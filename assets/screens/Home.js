@@ -5,6 +5,7 @@ import forecastService from '../helpers/ForecastService.js'
 
 
 function Home({history}) {
+
   return (
     <View
       style={styles.background}>
@@ -15,25 +16,25 @@ function Home({history}) {
         <View style={styles.navContainer}>
           <Button
           color='white'
-          style={styles.guideButton}
+          style={styles.Button}
           title="Guides"/>
         </View>
         <View style={styles.navContainer}>
           <Button
           color='white'
-          style={styles.flyButton}
+          style={styles.Button}
           title="FlyShops"/>
         </View>
         <View style={styles.navContainer}>
           <Button
           color='white'
-          style={styles.baitButton}
+          style={styles.Button}
           title="BaitShops"/>
         </View>
         <View style={styles.navContainer}>
           <Button
           color='white'
-          style={styles.aboutButton}
+          style={styles.Button}
           title="About"/>
         </View>
       </View>
@@ -66,20 +67,16 @@ function Home({history}) {
         alignSelf='center'
         title="Get Forecast"
         color='white'
-        onPress={() => Alert.prompt("Enter Zipcode",
-        "Retrieve next 72 hour hourly weather forecast.",
-        text => {
-        if (validateZipcode(text) === true) {
-          console.log(forecastService(text));
-        };
-      }
-      )}
+        onPress={getForecastApi}
         />
         </View>
     </View>
-
   );
 }
+
+const getForecastApi = () => Alert.prompt("Enter Zipcode",
+"Retrieve next 72 hour hourly weather forecast.",
+text => forecastService(text))
 
 const styles = StyleSheet.create({
   background: {
@@ -150,19 +147,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: 'white'
   },
-  aboutButton: {
-    borderRadius:10,
-    borderWidth: 1,
-  },
-  guideButton: {
-    borderRadius:10,
-    borderWidth: 1,
-  },
-  baitButton: {
-    borderRadius:10,
-    borderWidth: 1,
-  },
-  flyButton: {
+  Button: {
     borderRadius:10,
     borderWidth: 1,
   },
