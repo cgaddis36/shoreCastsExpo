@@ -5,6 +5,7 @@ import forecastService from '../helpers/ForecastService.js'
 
 
 function Home({history}) {
+
   return (
     <View
       style={styles.background}>
@@ -66,20 +67,16 @@ function Home({history}) {
         alignSelf='center'
         title="Get Forecast"
         color='white'
-        onPress={() => Alert.prompt("Enter Zipcode",
-        "Retrieve next 72 hour hourly weather forecast.",
-        text => {
-        if (validateZipcode(text) === true) {
-          forecastService(text);
-        };
-      }
-      )}
+        onPress={getForecastApi}
         />
         </View>
     </View>
-
   );
 }
+
+const getForecastApi = () => Alert.prompt("Enter Zipcode",
+"Retrieve next 72 hour hourly weather forecast.",
+text => forecastService(text))
 
 const styles = StyleSheet.create({
   background: {
