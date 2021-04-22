@@ -1,7 +1,8 @@
 const rootURL = "http://www.shorecasts.com/graphql"
 
-export default function forecastService(zipcode) {
-     return fetch(`${rootURL}`, {
+export default async function forecastService(zipcode) {
+     try {
+       let response = await fetch(`${rootURL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -9,17 +10,17 @@ export default function forecastService(zipcode) {
       body: JSON.stringify({
         query: `
         query{
-          closestStation(zipcode: ${zipcode}){
+          closestStation(zip: "${zipcode}"){
             id
             stationId
             location
           }}`,
         }),
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log(response.json)
-          return response.json()
-        }
-      })
+      });
+      let responseJSON = await response.json();
+        console.log("your data", responseJSON);
+        return responseJSON;
+      } catch (error) {
+        console.error(error)
+      }
     }
