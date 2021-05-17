@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button, Alert } from 'react-native';
 import validateZipcode from '../helpers/ZipcodeValidation.js'
-import forecastService from '../helpers/ForecastService.js'
+import stationService from '../helpers/StationService.js'
 
 
 function Home({history}) {
@@ -67,16 +67,26 @@ function Home({history}) {
         alignSelf='center'
         title="Get Forecast"
         color='white'
-        onPress={getForecastApi}
+        onPress={() => Alert.prompt(
+          "Enter Zipcode",
+          "Retrieve next 72 hour hourly weather forecast.",
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed')
+            },
+            {
+              text: 'Get Forecast',
+              onPress: (text) => stationService(text) && history.push("/forecast")
+            }
+          ]
+        )
+        }
         />
         </View>
     </View>
   );
 }
-
-const getForecastApi = () => Alert.prompt("Enter Zipcode",
-"Retrieve next 72 hour hourly weather forecast.",
-text => forecastService(text))
 
 const styles = StyleSheet.create({
   background: {
