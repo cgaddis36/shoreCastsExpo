@@ -1,7 +1,7 @@
 import tideService from './TideService.js'
 const rootURL = "http://www.shorecasts.com/graphql"
 
-export default async function forecastService(zipcode) {
+export default async function stationService(zipcode) {
   try {
    let response = await fetch(`${rootURL}`, {
     method: "POST",
