@@ -1,3 +1,4 @@
+import tideService from './TideService.js'
 const rootURL = "http://www.shorecasts.com/graphql"
 
 export default async function forecastService(zipcode) {
@@ -13,12 +14,13 @@ export default async function forecastService(zipcode) {
         closestStation(zip: "${zipcode}"){
           id
           stationId
-          location
         }}`,
       }),
     });
     let responseJSON = await response.json();
-      console.log("your data", responseJSON);
+      console.log("Your Data", responseJSON)
+      console.log("stationId",responseJSON["data"]["closestStation"]["stationId"]);
+      tideService(responseJSON["data"]["closestStation"]["stationId"])
     return responseJSON;
     } catch (error) {
       console.error(error)
