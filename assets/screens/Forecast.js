@@ -1,29 +1,33 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button } from 'react-native';
 
-function Forecast({history}) {
+function Forecast({zipcode, props, stationData, tidesData, forecastData}) {
+  console.log("TIDES DATA***", tidesData);
+  console.log("FORECAST DATA***", forecastData);
+  console.log("STATION DATA***", stationData);
+
   return (
     <ImageBackground
       style={styles.background}
       source={require('../images/jack_mcgeezer.jpg')}>
       <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>Forecast</Text>
+        <Text style={styles.logoText}>Forecast for {zipcode}</Text>
       </View>
       <View style={styles.button1}>
         <Button
         title="Home"
-        onPress={() => history.push("/")}
+        onPress={() => props.history.push("/")}
       />
       </View>
       <View style={styles.button2}>
         <Button
         title="Fly Shops"
-        onPress={() => history.push("/flyshops")}
+        onPress={() => props.history.push("/flyshops")}
         />
       </View>
     </ImageBackground>
-
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -38,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
     },
   logoText:{
-    color: 'white'
+    color: 'orange'
   },
   button1:{
     width: "100%",

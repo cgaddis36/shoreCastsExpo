@@ -4,8 +4,7 @@ import validateZipcode from '../helpers/ZipcodeValidation.js'
 import stationService from '../helpers/StationService.js'
 
 
-function Home({history}) {
-
+function Home({zipcode, props, handleChange, setTidesData, setForecastData, setStationData}) {
   return (
     <View
       style={styles.background}>
@@ -13,6 +12,7 @@ function Home({history}) {
         <Text style={styles.logoText}>ShoreCasts</Text>
       </View>
       <View style={styles.navBar}>
+
         <View style={styles.navContainer}>
           <Button
           color='white'
@@ -57,7 +57,7 @@ function Home({history}) {
           alignSelf='center'
           title="Register"
           color='white'
-          onPress={() => Alert.prompt("Enter Zipcode",
+          onPress={() => Alert.prompt("Register",
           "Retrieve next 72 hour hourly weather forecast.",
           text => console.log(text))}
         />
@@ -77,7 +77,8 @@ function Home({history}) {
             },
             {
               text: 'Get Forecast',
-              onPress: (text) => stationService(text) && history.push("/forecast")
+              onPress: (text) => stationService(text, setForecastData, setTidesData, setStationData) && handleChange(text, props)
+
             }
           ]
         )
