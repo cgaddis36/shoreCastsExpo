@@ -26,6 +26,12 @@ export default function App() {
 
   const [stationData, setStationData] = useState("default Station Data");
 
+  const [timeLabels, updateTimeLabels] = useState([]);
+
+  const [waterLevels, updateWaterLevels] = useState([]);
+
+  const [loading, isLoading] = useState(false)
+
   const handleChange = (event, props) => {
     setZipcode(event)
     props.history.push("/forecast")
@@ -33,9 +39,31 @@ export default function App() {
   return (
     <NativeRouter>
       <Switch>
-        <Route exact path="/" render={props => <Home zipcode={zipcode} props={props} handleChange={handleChange} setTidesData={setTidesData} setForecastData={setForecastData} setStationData={setStationData} />} />
+        <Route exact path="/" render={props => <Home
+                                      zipcode={zipcode}
+                                      props={props}
+                                      handleChange={handleChange}
+                                      setTidesData={setTidesData}
+                                      setForecastData={setForecastData}
+                                      setStationData={setStationData}
+                                      tidesData={tidesData}
+                                      timeLabels={timeLabels}
+                                      updateTimeLabels={updateTimeLabels}
+                                      waterLevels={waterLevels}
+                                      updateWaterLevels={updateWaterLevels}
+                                      isLoading={isLoading}
+                                      />} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/forecast" render={props => <Forecast zipcode={zipcode} props={props} stationData={stationData} tidesData={tidesData} forecastData={forecastData}/>} />
+        <Route exact path="/forecast" render={props => <Forecast
+                                              zipcode={zipcode}
+                                              props={props}
+                                              stationData={stationData}
+                                              tidesData={tidesData}
+                                              forecastData={forecastData}
+                                              timeLabels={timeLabels}
+                                              waterLevels={waterLevels}
+                                              loading={loading}
+                                              />} />
         <Route exact path="/tides" component={Tides} />
         <Route exact path="/guides" component={Guides} />
         <Route exact path="/flyshops" component={FlyShops} />
