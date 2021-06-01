@@ -4,7 +4,19 @@ import validateZipcode from '../helpers/ZipcodeValidation.js'
 import stationService from '../helpers/StationService.js'
 
 
-function Home({zipcode, props, handleChange, setTidesData, setForecastData, setStationData}) {
+function Home({zipcode,
+               props,
+               handleChange,
+               setTidesData,
+               setForecastData,
+               setStationData,
+               tidesData,
+               timeLabels,
+               updateTimeLabels,
+               waterLevels,
+               updateWaterLevels,
+               isLoading
+             }) {
   return (
     <View
       style={styles.background}>
@@ -12,7 +24,6 @@ function Home({zipcode, props, handleChange, setTidesData, setForecastData, setS
         <Text style={styles.logoText}>ShoreCasts</Text>
       </View>
       <View style={styles.navBar}>
-
         <View style={styles.navContainer}>
           <Button
           color='white'
@@ -77,7 +88,7 @@ function Home({zipcode, props, handleChange, setTidesData, setForecastData, setS
             },
             {
               text: 'Get Forecast',
-              onPress: (text) => stationService(text, setForecastData, setTidesData, setStationData) && handleChange(text, props)
+              onPress: (text) => stationService(text, setForecastData, setTidesData, setStationData, tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels, handleChange, props, isLoading)
 
             }
           ]
