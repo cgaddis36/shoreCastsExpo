@@ -3,7 +3,6 @@ import { ImageBackground, StyleSheet, View, Image, Text, Button, Alert } from 'r
 import validateZipcode from '../helpers/ZipcodeValidation.js'
 import stationService from '../helpers/StationService.js'
 
-
 function Home({zipcode,
                props,
                handleChange,
@@ -11,11 +10,12 @@ function Home({zipcode,
                setForecastData,
                setStationData,
                tidesData,
-               timeLabels,
-               updateTimeLabels,
-               waterLevels,
-               updateWaterLevels,
-               isLoading
+               waterLevelsToday,
+               updateWaterLevelsToday,
+               waterLevelsTomorrow,
+               updateWaterLevelsTomorrow,
+               isLoading,
+               beginDate
              }) {
   return (
     <View
@@ -88,7 +88,19 @@ function Home({zipcode,
             },
             {
               text: 'Get Forecast',
-              onPress: (text) => stationService(text, setForecastData, setTidesData, setStationData, tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels, handleChange, props, isLoading)
+              onPress: (text) => stationService(text,
+                                                setForecastData,
+                                                setTidesData,
+                                                setStationData,
+                                                tidesData,
+                                                waterLevelsToday,
+                                                updateWaterLevelsToday,
+                                                waterLevelsTomorrow,
+                                                updateWaterLevelsTomorrow,
+                                                handleChange,
+                                                props,
+                                                isLoading,
+                                                beginDate)
 
             }
           ]

@@ -26,11 +26,20 @@ export default function App() {
 
   const [stationData, setStationData] = useState("default Station Data");
 
-  const [timeLabels, updateTimeLabels] = useState([]);
+  const [timeLabels, updateTimeLabels] = useState(["1am", "2am", "3am", "4am", "5am", "6am",
+                                                  "7am", "8am", "9am", "10am", "11am", "12pm",
+                                                  "1pm", "2pm", "3pm", "4pm", "5pm", "6pm",
+                                                  "7pm", "8pm", "9pm", "10pm", "11pm"]);
 
-  const [waterLevels, updateWaterLevels] = useState([]);
+  const [waterLevelsToday, updateWaterLevelsToday] = useState([]);
 
-  const [loading, isLoading] = useState(false)
+  const [waterLevelsTomorrow, updateWaterLevelsTomorrow] = useState([]);
+
+  const [loading, isLoading] = useState(false);
+
+  const [today, setToday] = useState(new Date());
+
+  const beginDate = today.toISOString().slice(0, 10).replace(/[-]/g,'');
 
   const handleChange = (event, props) => {
     setZipcode(event)
@@ -47,11 +56,12 @@ export default function App() {
                                       setForecastData={setForecastData}
                                       setStationData={setStationData}
                                       tidesData={tidesData}
-                                      timeLabels={timeLabels}
-                                      updateTimeLabels={updateTimeLabels}
-                                      waterLevels={waterLevels}
-                                      updateWaterLevels={updateWaterLevels}
+                                      waterLevelsToday={waterLevelsToday}
+                                      updateWaterLevelsToday={updateWaterLevelsToday}
+                                      waterLevelsTomorrow={waterLevelsTomorrow}
+                                      updateWaterLevelsTomorrow={updateWaterLevelsTomorrow}
                                       isLoading={isLoading}
+                                      beginDate={beginDate}
                                       />} />
         <Route exact path="/about" component={About} />
         <Route exact path="/forecast" render={props => <Forecast
@@ -61,7 +71,7 @@ export default function App() {
                                               tidesData={tidesData}
                                               forecastData={forecastData}
                                               timeLabels={timeLabels}
-                                              waterLevels={waterLevels}
+                                              waterLevelsToday={waterLevelsToday}
                                               loading={loading}
                                               />} />
         <Route exact path="/tides" component={Tides} />

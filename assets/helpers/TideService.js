@@ -1,11 +1,24 @@
 import parseTides from './ParseTides.js'
 
-export default async function tideService(stationId, setTidesData, tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels) {
+export default async function tideService(stationId,
+                                          setTidesData,
+                                          waterLevelsToday,
+                                          updateWaterLevelsToday,
+                                          waterLevelsTomorrow,
+                                          updateWaterLevelsTomorrow,
+                                          beginDate) {
   try {
-   let response = await fetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=today&station=${stationId}&product=water_level&units=english&time_zone=gmt&application=ports_screen&datum=MLLW&format=json`);
+    let endDate = (parseInt(beginDate) + 1)
+
+   let response = await fetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${beginDate}&end_date=${endDate}&station=${stationId}&product=predictions&units=english&time_zone=gmt&application=ports_screen&datum=MLLW&format=json`);
     let responseJSON = await response.json();
+    parseTides(responseJSON,
+                waterLevelsToday,
+                updateWaterLevelsToday,
+                waterLevelsTomorrow,
+                updateWaterLevelsTomorrow,
+                beginDate)
     setTidesData(responseJSON)
-    parseTides(tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels)
 
     return responseJSON;
     } catch (error) {

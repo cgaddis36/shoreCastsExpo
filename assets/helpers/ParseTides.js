@@ -1,12 +1,17 @@
-const parseTides = (tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels) => {
-
-  tidesData["data"].forEach(function(tide) {
-    if(tide["t"].slice(-2) == "00") {
-      updateTimeLabels( timeLabels => [...timeLabels, tide["t"]])
+const parseTides = (tidesJSONData,
+                    waterLevelsToday,
+                    updateWaterLevelsToday,
+                    waterLevelsTomorrow,
+                    updateWaterLevelsTomorrow,
+                    beginDate) => {
+  tidesJSONData["predictions"].forEach(function(tide) {
+    if(tide["t"].slice(0, 10).replace(/[-]/g,'') == beginDate){
+      updateWaterLevelsToday( waterLevelsToday => [...waterLevelsToday, tide["v"]])
     }
-    updateWaterLevels( waterLevels => [...waterLevels, tide["v"]])
+    else {
+      updateWaterLevelsTomorrow( waterLevelsTomorrow => [...waterLevelsTomorrow, tide["v"]])
+    }
   })
-  console.log(timeLabels)
-  console.log(waterLevels)
+  // console.log(waterLevelsToday)
 };
 export default parseTides
