@@ -3,7 +3,19 @@ import forecastService from './ForecastService.js'
 
 const rootURL = "http://www.shorecasts.com/graphql"
 
-export default async function stationService(zipcode, setForecastData, setTidesData, setStationData, tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels, handleChange, props, isLoading) {
+export default async function stationService(zipcode,
+                                            setForecastData,
+                                            setTidesData,
+                                            setStationData,
+                                            tidesData,
+                                            waterLevelsToday,
+                                            updateWaterLevelsToday,
+                                            waterLevelsTomorrow,
+                                            updateWaterLevelsTomorrow,
+                                            handleChange,
+                                            props,
+                                            isLoading,
+                                            beginDate) {
   isLoading(true)
   try {
    let response = await fetch(`${rootURL}`, {
@@ -25,10 +37,22 @@ export default async function stationService(zipcode, setForecastData, setTidesD
     let responseJSON = await response.json();
       setStationData(responseJSON)
 
-      // console.log("Your Data", responseJSON)
-      // console.log("stationId",responseJSON["data"]["closestStation"]["stationId"]);
-      tideService(responseJSON["data"]["closestStation"]["stationId"], setTidesData, tidesData, timeLabels, updateTimeLabels, waterLevels, updateWaterLevels)
-      forecastService(responseJSON["data"]["closestStation"]["lat"], responseJSON["data"]["closestStation"]["lon"], setForecastData, isLoading)
+      updateWaterLevelsToday([])
+      updateWaterLevelsTomorrow([])
+
+      tideService(responseJSON["data"]["closestStation"]["stationId"],
+                  setTidesData,
+                  waterLevelsToday,
+                  updateWaterLevelsToday,
+                  waterLevelsTomorrow,
+                  updateWaterLevelsTomorrow,
+                  beginDate)
+
+      forecastService(responseJSON["data"]["closestStation"]["lat"],
+                      responseJSON["data"]["closestStation"]["lon"],
+                      setForecastData,
+                      isLoading)
+
       handleChange(zipcode, props)
     return responseJSON;
     } catch (error) {
