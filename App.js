@@ -7,30 +7,15 @@
  */
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-
-import {
- Icon
-} from 'react-native-vector-icons/FontAwesome';
-
-import {
-  NavigationContainer
-} from '@react-navigation/native';
-import {
-  createStackNavigator
-} from '@react-navigation/stack';
-import {
-  createBottomTabNavigator
-} from '@react-navigation/bottom-tabs';
-
+import { Icon } from 'react-native-vector-icons/FontAwesome';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, Entypo, MaterialCommunityIcons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
-
-
 import View from "react-native";
 import ReactDOM from "react-dom";
-import {NativeRouter, Route, Switch} from 'react-router-native';
 import Home from './assets/screens/Home.js';
 import Forecast from './assets/screens/Forecast.js';
-import Tides from './assets/screens/Tides.js';
 import Guides from './assets/screens/Guides.js';
 import FlyShops from './assets/screens/FlyShops.js';
 import BaitShops from './assets/screens/BaitShops.js';
@@ -39,6 +24,7 @@ import Loading from './assets/screens/Loading.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+// const topTab = createTopTabNavigator();
 
 export default function App() {
   createHomeStack = () => {
@@ -46,7 +32,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerStyle: { backgroundColor: 'rgba(165, 168, 176, 0.64)' },
+          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}>
@@ -61,12 +47,13 @@ export default function App() {
          name="Forecast"
          component={Forecast}
          initialParams={{
-           timeLabels: ["1am", "2am", "3am", "4am", "5am", "6am",
-           "7am", "8am", "9am", "10am", "11am", "12pm",
-           "1pm", "2pm", "3pm", "4pm", "5pm", "6pm",
-           "7pm", "8pm", "9pm", "10pm", "11pm"]
+          
            }}
          options={{ title: 'Tide and Weather Forecast'}}
+         initialParams={{
+           beginDate: new Date().toISOString().slice(0, 10),
+           endDate: (parseInt(new Date().toISOString().slice(0, 10) + 1))
+           }}
           />
       <Stack.Screen
          name="Loading"
@@ -85,7 +72,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="FlyShops"
         screenOptions={{
-          headerStyle: { backgroundColor: 'rgba(165, 168, 176, 0.64)' },
+          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}>
@@ -101,7 +88,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="BaitShops"
         screenOptions={{
-          headerStyle: { backgroundColor: 'rgba(165, 168, 176, 0.64)' },
+          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}>
@@ -117,7 +104,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="Guides"
         screenOptions={{
-          headerStyle: { backgroundColor: 'rgba(165, 168, 176, 0.64)' },
+          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}>
@@ -133,7 +120,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="About"
         screenOptions={{
-          headerStyle: { backgroundColor: 'rgba(165, 168, 176, 0.64)' },
+          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}>
