@@ -18,7 +18,7 @@ function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-console.log("SUMMARY", route.params.forecastHourlyData)
+console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
 // console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
 
   const lineDataToday = {
@@ -61,11 +61,38 @@ console.log("SUMMARY", route.params.forecastHourlyData)
                 time={component["endTime"].slice(11, 16)}
                 speed={component["windSpeed"]}
                 direction={component["windDirection"]}
+                name={null}
+                hourly={true}
                 />
             )}
 
           </ScrollView>
         </View>
+
+        <Text >
+         Daily Weather Forecast Summary
+        </Text>
+        <View style={{ height: 130, marginTop: 20}}>
+          <ScrollView horizontal={true}
+                      showsHorizontalScrollIndicator={false}>
+            {route.params.forecastSummaryData.map((component, index) =>
+              <ForecastContainer
+                image={component["icon"]}
+                text={component["shortForecast"]}
+                temp={component["temperature"]}
+                time={component["endTime"].slice(11, 16)}
+                speed={component["windSpeed"]}
+                direction={component["windDirection"]}
+                name={component["name"]}
+                hourly={false}
+                />
+            )}
+
+          </ScrollView>
+        </View>
+
+
+
       </View>
     </ScrollView>
 

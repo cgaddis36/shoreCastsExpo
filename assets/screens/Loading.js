@@ -69,7 +69,7 @@ function Loading() {
                                               "7am", "8am", "9am", "10am", "11am", "12pm",
                                               "1pm", "2pm", "3pm", "4pm", "5pm", "6pm",
                                               "7pm", "8pm", "9pm", "10pm", "11pm"],
-                                              forecastSummaryArray: forecastSummary["properties"]["periods"],
+                                              forecastSummaryData: forecastSummary["properties"]["periods"],
                                               waterTempData: waterTempData,
                                               waterTempToday: waterTempToday,
                                               waterTempTomorrow: waterTempTomorrow
