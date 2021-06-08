@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button, Alert } from 'react-native';
 import validateZipcode from '../helpers/ZipcodeValidation.js'
-import stationService from '../helpers/StationService.js'
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 
 function Home() {
