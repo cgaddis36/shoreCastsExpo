@@ -12,7 +12,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, Entypo, MaterialCommunityIcons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
-import View from "react-native";
 import ReactDOM from "react-dom";
 import Home from './assets/screens/Home.js';
 import Forecast from './assets/screens/Forecast.js';
@@ -47,7 +46,7 @@ export default function App() {
          name="Forecast"
          component={Forecast}
          initialParams={{
-          
+
            }}
          options={{ title: 'Tide and Weather Forecast'}}
          initialParams={{
