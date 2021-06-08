@@ -3,27 +3,12 @@ import { ImageBackground, StyleSheet, View, Image, Text, Button } from 'react-na
 
 function Guides({history}) {
   return (
-    <ImageBackground
-      style={styles.background}
-      source={require('../images/splash.jpg')}>
+    <View
+    style={styles.background}>
       <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>ShoreCasts</Text>
+        <Text style={styles.logoText}>GUIDES SON</Text>
       </View>
-      <View style={styles.button1}>
-      <Button
-        title="Home"
-        onPress={() => history.push("/")}
-      />
-      </View>
-      <View style={styles.button2}>
-        <Button
-         title="Fly Shops"
-         onPress={() => history.push("/flyshops")}
-         />
-      </View>
-
-    </ImageBackground>
-
+    </View>
   );
 }
 
@@ -31,7 +16,8 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: "rgb(30, 94, 238)"
   },
   logoContainer:{
     position: 'absolute',
