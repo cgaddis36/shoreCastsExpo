@@ -11,28 +11,9 @@ function Home() {
   return (
     <View
       style={styles.background}>
-      <View style={styles.loginButton}>
-        <Button
-          alignSelf='center'
-          title="Login"
-          color='white'
-          onPress={() => Alert.prompt("Enter email and password",
-          "Please enter your credentials to login to ShoreCasts.",
-          text => console.log(text))}
-        />
-      </View>
-      <View style={styles.orContainer}>
-        <Text style={styles.orText}>Or
-        </Text>
-      </View>
-       <View style={styles.registerButton}>
-        <Button
-          alignSelf='center'
-          title="Register"
-          color='white'
-          onPress={() => console.log("About Pressed")}
-        />
-        </View>
+      <Image
+        style={styles.images}
+        source={require("../images/telluride.jpeg")}/>
         <View style={styles.forecastButton}>
         <Button
         alignSelf='center'
@@ -70,31 +51,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "rgb(30, 94, 238)"
   },
-  navBar: {
-    marginTop: 75,
-    position: 'absolute',
-    top: 55,
-    flexDirection: "row",
-    marginBottom: 200,
-    height: 50,
-    width: "90%",
-    justifyContent: 'space-around',
-  },
-  logoContainer:{
-    marginTop: 10,
-    position: 'absolute',
-    top: 55,
-    alignItems: 'center',
-    width: 200,
-    height: 38,
-    backgroundColor: "rgba(165, 168, 176, 0.64)",
-    borderRadius: 10,
-    borderWidth: 1,
-    },
-  logoText:{
-    fontSize: 25,
-    color: 'white'
-  },
   forecastButton:{
     width: "40%",
     height: 40,
@@ -103,21 +59,20 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(51, 52, 56, 0.64)",
     marginBottom: 50
   },
-  loginButton:{
+  images:{
+    height: 350,
+    width: 350,
+    borderRadius: 10,
+    borderWidth: 1,
+    marginBottom: 25
+  },
+  button:{
     width: "40%",
     height: 40,
     borderRadius:10,
     borderWidth: 1,
     backgroundColor: "rgba(51, 52, 56, 0.64)",
     marginBottom: 25
-  },
-  registerButton:{
-    width: "40%",
-    height: 40,
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: "rgba(51, 52, 56, 0.64)",
-    marginBottom: 250
   },
   orContainer:{
     width: "10%",
@@ -132,15 +87,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: 'white'
   },
-  Button: {
-    borderRadius:10,
-    borderWidth: 1,
-  },
-  navContainer: {
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: 'rgba(51, 52, 56, 0.64)'
-  }
 
 })
 
