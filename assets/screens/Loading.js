@@ -65,10 +65,7 @@ function Loading() {
                                               forecastSummaryArray.push([summary["detailedForecast"], summary["shortForecast"], summary["icon"], summary["name"], summary["temperature"], summary["windDirection"], summary["windSpeed"]])
                                               })
 
-                                            var forecastHourlyArray = []
-                                            forecastSummary["properties"]["periods"].forEach(function(summary) {
-                                              forecastHourlyArray.push([summary["endTime"], summary["shortForecast"], summary["icon"], summary["temperature"], summary["windDirection"], summary["windSpeed"]])
-                                              })
+                                            var forecastHourlyArray = forecastSummary["properties"]["periods"]
 
                                             navigation.navigate("Forecast", {
                                               tidesToday: tidingsToday,

@@ -18,7 +18,7 @@ function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-// console.log("SUMMARY", route.params.forecastHourlyData)
+console.log("SUMMARY", route.params.forecastHourlyData)
 // console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
 
   const lineDataToday = {
@@ -53,7 +53,13 @@ function Forecast() {
         <View style={{ height: 130, marginTop: 20}}>
           <ScrollView horizontal={true}
                       showsHorizontalScrollIndicator={false}>
-          <ForecastContainer image={"https://api.weather.gov/icons/land/night/tsra_hi,20?size=medium"}/>
+            {route.params.forecastHourlyData.map((component, index) =>
+              <ForecastContainer
+                image={component["icon"]}
+                text={component["name"]}
+                />
+            )}
+
           </ScrollView>
         </View>
       </View>
