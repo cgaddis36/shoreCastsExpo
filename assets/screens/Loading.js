@@ -32,13 +32,12 @@ function Loading() {
             fetch(`https://api.weather.gov/points/${data.data.closestStation.lat},${data.data.closestStation.lon}`)
               .then(response => {
                 response.json().then((foreData) => {
-                  fetch(foreData.properties.forecast)
+                  fetch(foreData.properties.forecast.concat("/hourly"))
                     .then(response => {
                       response.json().then((forecastingData) => {
                         fetch((`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${route.params.beginDate}&end_date=${route.params.endDate}&station=${data.data.closestStation.stationId}&product=predictions&units=english&time_zone=gmt&application=ports_screen&datum=MLLW&format=json`))
                           .then(response => {
                             response.json().then((tideData) => {
-                              console.log(tideData)
                               var tidingsToday = []
                               var tidingsTomorrow = []
                               tideData["predictions"].forEach(function(tide) {
@@ -52,14 +51,16 @@ function Loading() {
                               navigation.navigate("Forecast", {
                                                       tidesToday: tidingsToday,
                                                       tidesTomorrow: tidingsTomorrow,
-                                                      loading: false
-                              })
+                                                      loading: false,
+                                                      forecastData: forecastingData,
+                                                      timeLabels: ["1am", "2am", "3am", "4am", "5am", "6am",
+                                                      "7am", "8am", "9am", "10am", "11am", "12pm",
+                                                      "1pm", "2pm", "3pm", "4pm", "5pm", "6pm",
+                                                      "7pm", "8pm", "9pm", "10pm", "11pm"]
+                                                    })
+                              // })
                             })
                           })
-                        // navigation.setParams({forecastData: forecastingData,
-                        //                       loading: false
-                        //                         })
-                        // navigation.navigate("Forecast")
                       })
                     })
                   })
