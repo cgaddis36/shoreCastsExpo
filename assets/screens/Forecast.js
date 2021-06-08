@@ -47,7 +47,7 @@ console.log("SUMMARY", route.params.forecastHourlyData)
       scrollEventThrottle={16}
       >
       <View style={styles.scrollTextContainer}>
-        <Text style={styles.hourlyForecastText}>
+        <Text >
           Hourly Weather Forecast
         </Text>
         <View style={{ height: 130, marginTop: 20}}>
@@ -56,7 +56,11 @@ console.log("SUMMARY", route.params.forecastHourlyData)
             {route.params.forecastHourlyData.map((component, index) =>
               <ForecastContainer
                 image={component["icon"]}
-                text={component["name"]}
+                text={component["shortForecast"]}
+                temp={component["temperature"]}
+                time={component["endTime"].slice(11, 16)}
+                speed={component["windSpeed"]}
+                direction={component["windDirection"]}
                 />
             )}
 
@@ -69,7 +73,7 @@ console.log("SUMMARY", route.params.forecastHourlyData)
 
       <View style={styles.charts}>
       <View style={styles.navContainer}>
-        <Text style={styles.tideText}>Tide Predictions for {route.params.beginDate}</Text>
+        <Text style={styles.logoText}>Tide Predictions for {route.params.beginDate}</Text>
       </View>
         <LineChart
           data={lineDataToday}
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
 
   },
   hourlyForecastText: {
-
+    color: 'white'
   },
   navContainer: {
     marginTop: 5,
