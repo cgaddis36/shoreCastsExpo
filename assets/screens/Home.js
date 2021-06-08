@@ -1,54 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button, Alert } from 'react-native';
 import validateZipcode from '../helpers/ZipcodeValidation.js'
 import stationService from '../helpers/StationService.js'
+import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 
-function Home({zipcode,
-               props,
-               handleChange,
-               setTidesData,
-               setForecastData,
-               setStationData,
-               tidesData,
-               waterLevelsToday,
-               updateWaterLevelsToday,
-               waterLevelsTomorrow,
-               updateWaterLevelsTomorrow,
-               isLoading,
-               beginDate
-             }) {
+function Home() {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const state = useNavigationState(state => state);
+
   return (
     <View
       style={styles.background}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>ShoreCasts</Text>
-      </View>
-      <View style={styles.navBar}>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="Guides"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="FlyShops"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="BaitShops"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="About"/>
-        </View>
-      </View>
       <View style={styles.loginButton}>
         <Button
           alignSelf='center'
@@ -68,9 +31,7 @@ function Home({zipcode,
           alignSelf='center'
           title="Register"
           color='white'
-          onPress={() => Alert.prompt("Register",
-          "Retrieve next 72 hour hourly weather forecast.",
-          text => console.log(text))}
+          onPress={() => console.log("About Pressed")}
         />
         </View>
         <View style={styles.forecastButton}>
@@ -80,7 +41,7 @@ function Home({zipcode,
         color='white'
         onPress={() => Alert.prompt(
           "Enter Zipcode",
-          "Retrieve next 72 hour hourly weather forecast.",
+          "Retrieve next 72 hour hourly weather forecast. NOAA tides predictions for next 48 Hours",
           [
             {
               text: 'Cancel',
@@ -88,20 +49,11 @@ function Home({zipcode,
             },
             {
               text: 'Get Forecast',
-              onPress: (text) => stationService(text,
-                                                setForecastData,
-                                                setTidesData,
-                                                setStationData,
-                                                tidesData,
-                                                waterLevelsToday,
-                                                updateWaterLevelsToday,
-                                                waterLevelsTomorrow,
-                                                updateWaterLevelsTomorrow,
-                                                handleChange,
-                                                props,
-                                                isLoading,
-                                                beginDate)
-
+              onPress: (text) => navigation.navigate("Loading", {
+                zipcode: text,
+                waterLevelsToday: [],
+                loading: true
+              })
             }
           ]
         )
@@ -110,7 +62,7 @@ function Home({zipcode,
         </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   background: {
@@ -191,6 +143,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(51, 52, 56, 0.64)'
   }
 
-});
+})
 
 export default Home;

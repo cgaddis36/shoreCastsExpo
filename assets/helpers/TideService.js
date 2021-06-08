@@ -6,7 +6,8 @@ export default async function tideService(stationId,
                                           updateWaterLevelsToday,
                                           waterLevelsTomorrow,
                                           updateWaterLevelsTomorrow,
-                                          beginDate) {
+                                          beginDate,
+                                        tidesData) {
   try {
     let endDate = (parseInt(beginDate) + 1)
 
@@ -20,6 +21,7 @@ export default async function tideService(stationId,
                 beginDate)
     setTidesData(responseJSON)
 
+    console.log("TIDESERVICE TIDES DATA", tidesData)
     return responseJSON;
     } catch (error) {
       console.error(error)

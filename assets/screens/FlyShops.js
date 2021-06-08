@@ -7,7 +7,7 @@ function FlyShops({history}) {
       style={styles.background}
       source={require('../images/splash.jpg')}>
       <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>ShoreCasts</Text>
+        <Text style={styles.logoText}>FLY PAGE</Text>
       </View>
       <View style={styles.button1}>
       <Button

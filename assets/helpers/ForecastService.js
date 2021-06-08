@@ -1,9 +1,9 @@
-export default async function forecastService(lat, lon, setForecastData, isLoading) {
+export default async function forecastService(lat, lon, setForecastData, forecastData, isLoading) {
   try {
     let response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=imperial&appid=74487dc686eb52026cec8112d8fe98f5`);
     let responseJSON = await response.json();
     setForecastData(responseJSON)
-
+console.log("FORECASTSERVICE DATA", forecastData)
     isLoading(false)
     return responseJSON;
     } catch (error) {
