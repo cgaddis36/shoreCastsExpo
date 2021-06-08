@@ -1,73 +1,43 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button, useWindowDimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-function Forecast({zipcode,
-                    props,
-                    stationData,
-                    tidesData,
-                    forecastData,
-                    timeLabels,
-                    waterLevelsToday,
-                    loading}) {
-  const lineData = {
-    labels: timeLabels,
+import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
+
+function Forecast() {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const state = useNavigationState(state => state);
+console.log("Forecast route params", route.params.timeLabels)
+  const lineDataToday = {
+    labels: route.params.timeLabels,
     datasets: [
       {
-        data: waterLevelsToday,
+        data: route.params.tidesToday,
         // strokeWidth: .5, // optional
       },
     ],
   };
-  // console.log(timeLabels)
-  console.log("FORECAST DATA***", forecastData["hourly"]);
-  // console.log("STATION DATA***", stationData);
-  if(loading)
-    return (
-    <View style={styles.background}>
-      <Text style={styles.loadingText}>
-        Loading ...
-      </Text>
-    </View>);
-  else if(!loading)
+  const lineDataTomorrow = {
+    labels: route.params.timeLabels,
+    datasets: [
+      {
+        data: route.params.tidesTomorrow,
+        // strokeWidth: .5, // optional
+      },
+    ],
+  };
+
   return (
     <View
       style={styles.background}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>ShoreCasts</Text>
-      </View>
-      <View style={styles.navBar}>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="Guides"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="FlyShops"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="BaitShops"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="About"/>
-        </View>
-      </View>
+
       <View style={styles.charts}>
       <View style={styles.navContainer}>
-      <Text style={styles.Button}>Tide Predictions for {zipcode}</Text>
+      <Text style={styles.Button}>Tide Predictions for {route.params.beginDate}</Text>
       </View>
         <LineChart
-          data={lineData}
-          width={useWindowDimensions().width} // from react-native
+          data={lineDataToday}
+          width={400} // from react-native
           height={300}
           yAxisSuffix={'ft'}
           verticalLabelRotation={90}
@@ -87,12 +57,6 @@ function Forecast({zipcode,
             borderRadius: 16
           }}
         />
-        <View style={styles.button2}>
-        <Button
-        title="Home"
-        onPress={() => props.history.push("/")}
-        />
-        </View>
       </View>
     </View>
   );
@@ -177,3 +141,13 @@ const styles = StyleSheet.create({
 });
 
 export default Forecast;
+
+// const [zipcode, setZipcode] = useState("default Zipcode");
+// const [forecastData, setForecastData] = useState("default Forecast Data");
+// const [stationData, setStationData] = useState("default Station Data");
+// const [waterLevelsToday, updateWaterLevelsToday] = useState([]);
+// const [waterLevelsTomorrow, updateWaterLevelsTomorrow] = useState([]);
+// const [loading, isLoading] = useState(false);
+// const [today, setToday] = useState(new Date());
+// const beginDate = today.toISOString().slice(0, 10).replace(/[-]/g,'');
+// const [tidesData, setTidesData] = useState("default Tides Data");
