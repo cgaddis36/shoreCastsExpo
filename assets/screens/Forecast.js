@@ -1,13 +1,26 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Image, Text, Button, useWindowDimensions } from 'react-native';
+import { ImageBackground,
+         StyleSheet,
+         View,
+         Image,
+         Text,
+         Button,
+         ScrollView,
+         useWindowDimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
+import { useFocusEffect,
+         useNavigation,
+         useRoute,
+         useNavigationState } from '@react-navigation/native';
+import ForecastContainer from '../components/containers/ForecastContainer.js';
 
 function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-console.log("Forecast route params", route.params.timeLabels)
+console.log("SUMMARY", route.params.forecastHourlyData)
+// console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
+
   const lineDataToday = {
     labels: route.params.timeLabels,
     datasets: [
@@ -30,10 +43,33 @@ console.log("Forecast route params", route.params.timeLabels)
   return (
     <View
       style={styles.background}>
+      <ScrollView
+      scrollEventThrottle={16}
+      >
+      <View style={styles.scrollTextContainer}>
+        <Text style={styles.hourlyForecastText}>
+          Hourly Weather Forecast
+        </Text>
+        <View style={{ height: 130, marginTop: 20}}>
+          <ScrollView horizontal={true}
+                      showsHorizontalScrollIndicator={false}>
+            {route.params.forecastHourlyData.map((component, index) =>
+              <ForecastContainer
+                image={component["icon"]}
+                text={component["name"]}
+                />
+            )}
+
+          </ScrollView>
+        </View>
+      </View>
+    </ScrollView>
+
+
 
       <View style={styles.charts}>
       <View style={styles.navContainer}>
-      <Text style={styles.Button}>Tide Predictions for {route.params.beginDate}</Text>
+        <Text style={styles.tideText}>Tide Predictions for {route.params.beginDate}</Text>
       </View>
         <LineChart
           data={lineDataToday}
@@ -70,14 +106,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "rgb(30, 94, 238)"
   },
-  Button: {
-    borderRadius:10,
-    borderWidth: 1,
+  tideText: {
+
+  },
+  hourlyForecastText: {
+
   },
   navContainer: {
-    borderRadius:10,
+    marginTop: 5,
+    borderRadius:5,
     borderWidth: 1,
-    backgroundColor: 'rgba(51, 52, 56, 0.64)'
+    backgroundColor: 'rgba(51, 52, 56, 0.64)',
+    paddingHorizontal: 5
+  },
+  scrollTextContainer: {
+    marginTop: 5,
+    backgroundColor: 'white',
+    borderRadius:5,
+    borderWidth: 1,
+    backgroundColor: 'rgba(51, 52, 56, 0.64)',
+    paddingHorizontal: 5,
+    flex: 1
   },
   navBar: {
     marginTop: 75,
@@ -127,17 +176,7 @@ const styles = StyleSheet.create({
     loadingText:{
       fontSize: 30,
       marginBottom: 500
-    },
-  button1:{
-    width: "100%",
-    height: 70,
-    backgroundColor: "rgb(31, 112, 219)"
-  },
-  button2:{
-    width: "100%",
-    height: 70,
-    backgroundColor: "rgba(165, 168, 176, 0.64)"
-  }
+    }
 });
 
 export default Forecast;
