@@ -22,6 +22,9 @@ import {
   createBottomTabNavigator
 } from '@react-navigation/bottom-tabs';
 
+import { Ionicons, Entypo, MaterialCommunityIcons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+
+
 import View from "react-native";
 import ReactDOM from "react-dom";
 import {NativeRouter, Route, Switch} from 'react-router-native';
@@ -153,48 +156,47 @@ export default function App() {
         component={createHomeStack}
         options={{
           tabBarLabel: 'Home',
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="home" size={size} color={color}/>
+            )
         }}  />
       <Tab.Screen
         name="Fly Shops"
         component={createFlyShopsStack}
         options={{
-          tabBarLabel: 'FlyShops'
+          tabBarLabel: 'FlyShops',
+          tabBarIcon: ({color, size}) => (
+            <Entypo name="bug" size={size} color={color}/>
+            )
         }} />
       <Tab.Screen
         name="Bait Shops"
         component={createBaitShopsStack}
         options={{
-          tabBarLabel: 'BaitShops'
+          tabBarLabel: 'BaitShops',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="hook" size={size} color={color}/>
+            )
         }}  />
       <Tab.Screen
         name="Guides"
         component={createGuidesStack}
         options={{
-          tabBarLabel: 'Guides'
+          tabBarLabel: 'Guides',
+          tabBarIcon: ({color, size}) => (
+            <FontAwesome5 name="fish" size={size} color={color}/>
+            )
         }} />
       <Tab.Screen
         name="About"
         component={createAboutStack}
         options={{
-          tabBarLabel: 'About'
+          tabBarLabel: 'About',
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="questioncircleo" size={size} color={color}/>
+            )
         }}  />
     </Tab.Navigator>
   </NavigationContainer>
     )
   }
-// <Route exact path="/" render={props => <Home
-//   <Route exact path="/about" component={About} />
-//   <Route exact path="/forecast" render={props => <Forecast
-//     zipcode={zipcode}
-//     props={props}
-//     stationData={stationData}
-//     tidesData={tidesData}
-//     forecastData={forecastData}
-//     timeLabels={timeLabels}
-//     waterLevelsToday={waterLevelsToday}
-//     loading={loading}
-//     />} />
-//     <Route exact path="/tides" component={Tides} />
-//     <Route exact path="/guides" component={Guides} />
-//     <Route exact path="/flyshops" component={FlyShops} />
-//     <Route exact path="/baitshops" component={BaitShops} />
