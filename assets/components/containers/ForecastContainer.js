@@ -4,7 +4,7 @@ import { useFocusEffect,
          useNavigation,
          useRoute,
          useNavigationState } from '@react-navigation/native';
-function ForecastContainer({image, text, temp, time, speed, direction}) {
+function ForecastContainer({image, text, temp, time, speed, direction, name, hourly}) {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
@@ -18,12 +18,13 @@ function ForecastContainer({image, text, temp, time, speed, direction}) {
       </View>
       <View style={{flex:1, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
         <Text>
-          {text}
+          {(hourly == false) ? name : text}
         </Text>
       </View>
       <View style={{flex:1, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
         <Text>
-          {time} {temp}{'\u00b0'}F
+        {(hourly == false) ? (temp + "\u00b0" + "F") : (time + " " + temp + "\u00b0" + "F")}
+
         </Text>
       </View>
       <View style={{flex:1, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>

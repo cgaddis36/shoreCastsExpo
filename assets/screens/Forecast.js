@@ -18,7 +18,7 @@ function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-console.log("SUMMARY", route.params.forecastHourlyData)
+console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
 // console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
 
   const lineDataToday = {
@@ -47,25 +47,59 @@ console.log("SUMMARY", route.params.forecastHourlyData)
       scrollEventThrottle={16}
       >
       <View style={styles.scrollTextContainer}>
-        <Text >
+        <Text style={{marginTop: 5, color: 'white'}}>
           Hourly Weather Forecast
         </Text>
-        <View style={{ height: 130, marginTop: 20}}>
+        <View style={{ height: 130, marginTop: 5}}>
           <ScrollView horizontal={true}
                       showsHorizontalScrollIndicator={false}>
             {route.params.forecastHourlyData.map((component, index) =>
               <ForecastContainer
+                key={index}
+
                 image={component["icon"]}
                 text={component["shortForecast"]}
                 temp={component["temperature"]}
                 time={component["endTime"].slice(11, 16)}
                 speed={component["windSpeed"]}
                 direction={component["windDirection"]}
+                name={null}
+                hourly={true}
+                containerWidth={130}
+                containerHeight={130}
                 />
             )}
 
           </ScrollView>
         </View>
+
+        <Text style={{marginTop: 5, color: 'white'}}>
+         Daily Weather Forecast Summary
+        </Text>
+        <View style={{ height: 150, marginTop: 5, marginBottom: 10}}>
+          <ScrollView horizontal={true}
+                      showsHorizontalScrollIndicator={false}>
+            {route.params.forecastSummaryData.map((component, index) =>
+              <ForecastContainer
+                key={index}
+                image={component["icon"]}
+                text={component["detailedForecast"]}
+                temp={component["temperature"]}
+                time={component["endTime"].slice(11, 16)}
+                speed={component["windSpeed"]}
+                direction={component["windDirection"]}
+                name={component["name"]}
+                hourly={false}
+                containerWidth={210}
+                containerHeight={150}
+                />
+            )}
+
+          </ScrollView>
+        </View>
+
+
+
       </View>
     </ScrollView>
 
@@ -124,13 +158,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
   scrollTextContainer: {
-    marginTop: 5,
+    marginTop: 2,
+    marginHorizontal: 5,
     backgroundColor: 'white',
-    borderRadius:5,
+    borderRadius:16,
     borderWidth: 1,
     backgroundColor: 'rgba(51, 52, 56, 0.64)',
     paddingHorizontal: 5,
-    flex: 1
+    flex: 1,
+    alignItems: 'center'
   },
   navBar: {
     marginTop: 75,
