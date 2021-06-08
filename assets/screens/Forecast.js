@@ -7,7 +7,9 @@ function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-console.log("Forecast route params", route.params.timeLabels)
+console.log("SUMMARY", route.params.forecastHourlyData)
+// console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
+
   const lineDataToday = {
     labels: route.params.timeLabels,
     datasets: [

@@ -49,22 +49,40 @@ function Loading() {
                                             tideData["predictions"].forEach(function(tide) {
                                               if(tide["t"].slice(0, 10).replace(/[-]/g,'') == route.params.beginDate){
                                                 tidingsToday.push(tide["v"])
-                                              }
+                                                }
                                               else {
                                                 tidingsTomorrow.push(tide["v"])
-                                              }
-                                            })
+                                                }
+                                              })
+                                            var waterTempToday = []
+                                            var waterTempTomorrow = []
+                                            waterTempData["data"].forEach(function(temp) {
+                                              waterTempToday.push(parseFloat(temp["v"]))
+
+                                              })
+                                            var forecastSummaryArray = []
+                                            forecastSummary["properties"]["periods"].forEach(function(summary) {
+                                              forecastSummaryArray.push([summary["detailedForecast"], summary["shortForecast"], summary["icon"], summary["name"], summary["temperature"], summary["windDirection"], summary["windSpeed"]])
+                                              })
+
+                                            var forecastHourlyArray = []
+                                            forecastSummary["properties"]["periods"].forEach(function(summary) {
+                                              forecastHourlyArray.push([summary["endTime"], summary["shortForecast"], summary["icon"], summary["temperature"], summary["windDirection"], summary["windSpeed"]])
+                                              })
+
                                             navigation.navigate("Forecast", {
                                               tidesToday: tidingsToday,
                                               tidesTomorrow: tidingsTomorrow,
                                               loading: false,
-                                              forecastData: forecastingData,
+                                              forecastHourlyData: forecastHourlyArray,
                                               timeLabels: ["1am", "2am", "3am", "4am", "5am", "6am",
                                               "7am", "8am", "9am", "10am", "11am", "12pm",
                                               "1pm", "2pm", "3pm", "4pm", "5pm", "6pm",
                                               "7pm", "8pm", "9pm", "10pm", "11pm"],
-                                              forecastSummary: forecastSummary,
-                                              waterTempData: waterTempData
+                                              forecastSummaryArray: forecastSummaryArray,
+                                              waterTempData: waterTempData,
+                                              waterTempToday: waterTempToday,
+                                              waterTempTomorrow: waterTempTomorrow
                                             })
                                           })
                                         })
