@@ -8,11 +8,20 @@ function Forecast() {
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
 console.log("Forecast route params", route.params)
-  const lineData = {
+  const lineDataToday = {
     labels: route.params.timeLabels,
     datasets: [
       {
         data: route.params.tidesToday,
+        // strokeWidth: .5, // optional
+      },
+    ],
+  };
+  const lineDataTomorrow = {
+    labels: route.params.timeLabels,
+    datasets: [
+      {
+        data: route.params.tidesTomorrow,
         // strokeWidth: .5, // optional
       },
     ],
@@ -27,8 +36,30 @@ console.log("Forecast route params", route.params)
       <Text style={styles.Button}>Tide Predictions for {route.params.zipcode}</Text>
       </View>
         <LineChart
-          data={lineData}
-          width={250} // from react-native
+          data={lineDataToday}
+          width={400} // from react-native
+          height={300}
+          yAxisSuffix={'ft'}
+          verticalLabelRotation={90}
+          chartConfig={{
+            backgroundColor: 'rgba(165, 168, 176, 0.64)',
+            backgroundGradientFrom: 'rgba(165, 168, 176, 0.64)',
+            backgroundGradientTo: 'rgba(165, 168, 176, 0.64)',
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16
+            }
+          }}
+          bezier
+          style={{
+            marginVertical: 8,
+            borderRadius: 16
+          }}
+        />
+        <LineChart
+          data={lineDataTomorrow}
+          width={400} // from react-native
           height={300}
           yAxisSuffix={'ft'}
           verticalLabelRotation={90}
