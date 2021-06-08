@@ -69,7 +69,8 @@ export default function App() {
          name="Loading"
          component={Loading}
          initialParams={{
-           
+           beginDate: new Date().toISOString().slice(0, 10).replace(/[-]/g,''),
+           endDate: (parseInt(new Date().toISOString().slice(0, 10).replace(/[-]/g,'')) + 1)
            }}
          options={{ title: 'Loading Water Levels'}}
           />

@@ -7,12 +7,12 @@ function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-
+console.log("Forecast route params", route.params)
   const lineData = {
     labels: route.params.timeLabels,
     datasets: [
       {
-        data: route.params.waterLevelsToday,
+        data: route.params.tidesToday,
         // strokeWidth: .5, // optional
       },
     ],
@@ -21,35 +21,7 @@ function Forecast() {
   return (
     <View
       style={styles.background}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>ShoreCasts</Text>
-      </View>
-      <View style={styles.navBar}>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="Guides"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="FlyShops"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="BaitShops"/>
-        </View>
-        <View style={styles.navContainer}>
-          <Button
-          color='white'
-          style={styles.Button}
-          title="About"/>
-        </View>
-      </View>
+
       <View style={styles.charts}>
       <View style={styles.navContainer}>
       <Text style={styles.Button}>Tide Predictions for {route.params.zipcode}</Text>
@@ -76,12 +48,7 @@ function Forecast() {
             borderRadius: 16
           }}
         />
-        <View style={styles.button2}>
-        <Button
-        title="Home"
-        onPress={() => navigation.navigate("Home")}
-        />
-        </View>
+
       </View>
     </View>
   );
