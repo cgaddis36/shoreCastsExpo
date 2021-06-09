@@ -56,7 +56,6 @@ console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
             {route.params.forecastHourlyData.map((component, index) =>
               <ForecastContainer
                 key={index}
-
                 image={component["icon"]}
                 text={component["shortForecast"]}
                 temp={component["temperature"]}
@@ -74,7 +73,7 @@ console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
         </View>
 
         <Text style={{marginTop: 5, color: 'white'}}>
-         Daily Weather Forecast Summary
+         7-Day Weather Summary
         </Text>
         <View style={{ height: 150, marginTop: 5, marginBottom: 10}}>
           <ScrollView horizontal={true}
@@ -98,17 +97,16 @@ console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
           </ScrollView>
         </View>
 
-
-
       </View>
     </ScrollView>
-
-
-
-      <View style={styles.charts}>
+    <View style={styles.charts}>
       <View style={styles.navContainer}>
         <Text style={styles.logoText}>Tide Predictions for {route.params.beginDate}</Text>
       </View>
+      <ScrollView horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        >
+        <View>
         <LineChart
           data={lineDataToday}
           width={400} // from react-native
@@ -132,7 +130,34 @@ console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
           }}
         />
       </View>
+      <View style={{marginLeft: 10}}>
+        <LineChart
+          data={lineDataTomorrow}
+          width={400} // from react-native
+          height={300}
+          yAxisSuffix={'ft'}
+          verticalLabelRotation={90}
+          chartConfig={{
+            backgroundColor: 'rgba(165, 168, 176, 0.64)',
+            backgroundGradientFrom: 'rgba(165, 168, 176, 0.64)',
+            backgroundGradientTo: 'rgba(165, 168, 176, 0.64)',
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16
+            }
+          }}
+          bezier
+          style={{
+            marginVertical: 8,
+            borderRadius: 16
+          }}
+        />
     </View>
+    </ScrollView>
+      </View>
+    </View>
+
   );
 
 }
@@ -210,8 +235,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     },
     logoText:{
-      fontSize: 25,
-      color: 'white'
+      fontSize: 15,
+      color: 'white',
+      textAlign: 'center'
     },
     loadingText:{
       fontSize: 30,

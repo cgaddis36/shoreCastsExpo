@@ -4,31 +4,28 @@ import { useFocusEffect,
          useNavigation,
          useRoute,
          useNavigationState } from '@react-navigation/native';
-function ForecastContainer({image, text, temp, time, speed, direction, name, hourly}) {
+function ForecastContainer({image, text, temp, time, speed, direction, name, hourly, containerWidth, containerHeight}) {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
 
   return (
-    <View style={{height:130,width:130, marginLeft: 10, borderWidth: 0.5}}>
-      <View style={{flex:1}}>
+    <View style={{height:containerHeight,width:containerWidth, marginLeft: 10, borderRadius:5,borderWidth: 1, alignItems: "center"}}>
+      <View style={{flex:.8, flexDirection: "row"}}>
         <Image source={{uri: image}}
-               style={{ flex: 1, width: 50, height: 20}}
+               style={{ flex: .8, width: 40, height: 40, borderRadius:5,borderWidth: .3, borderColor: 'rgba(37, 35, 35, 0.84)', marginLeft:1, marginTop:1}}
           />
-      </View>
-      <View style={{flex:1, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
-        <Text>
-          {(hourly == false) ? name : text}
+        <Text style={{color: "lightgrey", marginLeft: 3}}>
+          {(hourly == false) ? (temp + "\u00b0" + "F") : (temp + "\u00b0" + "F" + " " + time )}
         </Text>
       </View>
-      <View style={{flex:1, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
-        <Text>
-        {(hourly == false) ? (temp + "\u00b0" + "F") : (time + " " + temp + "\u00b0" + "F")}
-
+      <View style={{flex:2, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5, marginTop: 10}}>
+        <Text style={{color: "lightgrey", fontSize: 10, textAlign: 'center'}}>
+          {(hourly == false) ? (name + " " + text) : text}
         </Text>
       </View>
-      <View style={{flex:1, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
-        <Text>
+      <View style={{flex:.5, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
+        <Text style={{color: "lightgrey", fontSize: 10}}>
           Winds {speed} {direction}
         </Text>
       </View>
