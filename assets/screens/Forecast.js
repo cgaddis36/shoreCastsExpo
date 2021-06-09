@@ -18,8 +18,8 @@ function Forecast() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
-// console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
+    console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
+    // console.log("Water Temp Tmorrow Hourly params", route.params.forecastSummary)
 
   const lineDataToday = {
     labels: route.params.timeLabels,
@@ -100,6 +100,9 @@ console.log("FORECAST SUMMARY", route.params.forecastSummaryData)
       </View>
     </ScrollView>
     <View style={styles.charts}>
+      <View style={styles.navContainer}>
+        <Text style={styles.logoText}>Water Temperature: {Math.min.apply(Math, route.params.waterTempToday)} - {Math.max.apply(Math, route.params.waterTempToday)}{"\u00b0"+"F"}</Text>
+      </View>
       <View style={styles.navContainer}>
         <Text style={styles.logoText}>Tide Predictions for {route.params.beginDate}</Text>
       </View>
@@ -246,13 +249,3 @@ const styles = StyleSheet.create({
 });
 
 export default Forecast;
-
-// const [zipcode, setZipcode] = useState("default Zipcode");
-// const [forecastData, setForecastData] = useState("default Forecast Data");
-// const [stationData, setStationData] = useState("default Station Data");
-// const [waterLevelsToday, updateWaterLevelsToday] = useState([]);
-// const [waterLevelsTomorrow, updateWaterLevelsTomorrow] = useState([]);
-// const [loading, isLoading] = useState(false);
-// const [today, setToday] = useState(new Date());
-// const beginDate = today.toISOString().slice(0, 10).replace(/[-]/g,'');
-// const [tidesData, setTidesData] = useState("default Tides Data");
