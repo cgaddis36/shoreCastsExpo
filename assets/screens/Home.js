@@ -9,6 +9,7 @@ function Home() {
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
   const [modalToggle, setModalToggle] = useState(false)
+  const [user, setUser] = useState('')
 
   return (
     <View

@@ -9,6 +9,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import LinearGradient from 'react-native-svg';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
+import CreateUser from './CreateUser.js'
 
 function LoginModal({setModalToggle}) {
   const route = useRoute();
@@ -38,15 +39,14 @@ function LoginModal({setModalToggle}) {
     }
   }
   const loginHandle = () => {
-    console.log("password", password)
-    console.log("email", email)
     console.log("Login Clickeed")
   }
+
   const signupHandle = () => {
-    console.log("password", password)
-    console.log("email", email)
-    console.log("Signup Clickeed")
+    CreateUser({email, password})
   }
+
+
   const emailInputChange = (text) => {
     if(text.includes("@") && text.includes(".")) {
       setEmailValidation(true)
@@ -230,7 +230,8 @@ function LoginModal({setModalToggle}) {
                 alignSelf='center'
                 title="Sign Up"
                 color='white'
-                onPress={() => signupHandle()
+                onPress={() =>
+                  signupHandle()
                 }
                 />
               }
