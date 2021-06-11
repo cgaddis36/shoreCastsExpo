@@ -40,7 +40,7 @@ export default function App() {
         component={Home}
         initialParams={{
                   }}
-        options={{ title: 'ShoreCasts'}}
+        options={{ title: 'ShoreCast'}}
          />
       <Stack.Screen
          name="Forecast"
@@ -48,7 +48,7 @@ export default function App() {
          initialParams={{
 
            }}
-         options={{ title: 'Tide and Weather Forecast'}}
+         options={{ title: 'Forecast'}}
          initialParams={{
            beginDate: new Date().toISOString().slice(0, 10),
            endDate: (parseInt(new Date().toISOString().slice(0, 10) + 1))
