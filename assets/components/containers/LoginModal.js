@@ -6,7 +6,9 @@ import { useFocusEffect,
          useWindowDimensions,
          useNavigationState } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import LinearGradient from 'react-native-svg';
 import Feather from 'react-native-vector-icons/Feather';
+import * as Animatable from 'react-native-animatable';
 
 function LoginModal({setModalToggle}) {
   const route = useRoute();
@@ -14,30 +16,78 @@ function LoginModal({setModalToggle}) {
   const state = useNavigationState(state => state);
   const [login, setLogin] = useState(true)
   const [secureEntry, setSecureEntry] = useState(true)
+  const [secureConfirmEntry, setSecureConfirmEntry] = useState(true)
+  const toggleSecureConfirmText  = () => {setSecureConfirmEntry(!secureConfirmEntry)}
   const toggleSecureText  = () => {setSecureEntry(!secureEntry)}
   const [toggleCheck, setToggleCheck] = useState(false)
+  const [passwordValidation, setPasswordValidation] = useState(false)
+  const [passwordConfirmValidation, setPasswordConfirmValidation] = useState(false)
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirm, setPasswordConfirm] = useState("")
   const [emailValidation, setEmailValidation] = useState(false)
-  const textInputChange = (text) => {
-    if(text.trim().length >= 4) {
+
+
+  const passwordConfirmInputChange = (text) => {
+    if(text.trim() == password) {
+      setPasswordConfirmValidation(true)
+      setPasswordConfirm(text)
+    } else {
+      setPasswordConfirmValidation(false)
+    }
+  }
+  const loginHandle = () => {
+    console.log("password", password)
+    console.log("email", email)
+    console.log("Login Clickeed")
+  }
+  const signupHandle = () => {
+    console.log("password", password)
+    console.log("email", email)
+    console.log("Signup Clickeed")
+  }
+  const emailInputChange = (text) => {
+    if(text.includes("@") && text.includes(".")) {
       setEmailValidation(true)
       setToggleCheck(true)
+      setEmail(text)
     } else {
       setToggleCheck(false)
+      setEmailValidation(false)
     }
   }
 
+  const passwordInputChange = (text) => {
+    if(text.trim().length >= 8) {
+      setPasswordValidation(true)
+      setPassword(text)
+    } else {
+      setPasswordValidation(false)
+    }
+  }
 
 
   return (
     <View style={styles.modalContainer}>
       <View style={styles.header}>
-
+        <View style={styles.logoContainer}>
+          <Image source={require('../../images/default.png')}
+            style={styles.logo}
+            />
+        </View>
           <Text style={styles.headerText}>
             Welcome to ShoreCast!
           </Text>
-
+          { login ?
+          <Text style={styles.headerSubtext}>
+            Enter your login credentials below to get started.    Click Sign Up below if this is your first time here!
+          </Text> :
+          <Text style={styles.headerSubtext}>
+            Enter your email & password below to get started. Click Login below if you've been here before!
+          </Text>
+        }
       </View>
-      { login ?
         <View style={styles.footer}>
           <Text style={styles.footerText}>
             Email
@@ -52,7 +102,7 @@ function LoginModal({setModalToggle}) {
               placeholder="Your Email"
             autoCapitalize="none"
             placeholderTextColor="#666666"
-            onChangeText={(text) => textInputChange(text)}
+            onChangeText={(text) => emailInputChange(text)}
             style={styles.footerTextInput}/>
           {toggleCheck ?
             <Feather
@@ -62,6 +112,11 @@ function LoginModal({setModalToggle}) {
                   /> : null
               }
           </View>
+          { emailValidation ? null :
+            <Animatable.View animation="fadeInLeft" duration={500}>
+              <Text style={styles.errorMsg}>JohnFishman@example.com</Text>
+            </Animatable.View>
+            }
           <Text style={[styles.footerText, {marginTop: 35}]}>
             Password
           </Text>
@@ -77,7 +132,7 @@ function LoginModal({setModalToggle}) {
              secureTextEntry={secureEntry}
              style={styles.footerTextInput}
              placeholderTextColor="#666666"
-
+             onChangeText={(text) => passwordInputChange(text)}
              />
 
 
@@ -93,72 +148,125 @@ function LoginModal({setModalToggle}) {
                 :
                 <Feather
                     name="eye"
-                    color="grey"
+                    color="green"
                     size={20}
                 />
                 }
             </TouchableOpacity>
+
            </View>
+           { passwordValidation ? null :
+             <Animatable.View animation="fadeInLeft" duration={500}>
+               <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+             </Animatable.View>
+             }
+             { login ? null :
+
+               <View>
+                 <Text style={[styles.footerText, {marginTop: 35}]}>
+                   Password Confirmation
+                 </Text>
+                 <View style={styles.footerAction}>
+                   <Feather
+                            name="lock"
+                            color={"#fff"}
+                            size={20}
+                        />
+
+                        <TextInput
+                          placeholder="Confirm Password"
+                        autoCapitalize="none"
+                        secureTextEntry={secureConfirmEntry}
+                        style={styles.footerTextInput}
+                        placeholderTextColor="#666666"
+                        onChangeText={(text) => passwordConfirmInputChange(text)}
+                        />
+                       <TouchableOpacity
+                          onPress={toggleSecureConfirmText}
+                      >
+                      {secureConfirmEntry ?
+                      <Feather
+                          name="eye-off"
+                          color="grey"
+                          size={20}
+                      />
+                      :
+                      <Feather
+                          name="eye"
+                          color="green"
+                          size={20}
+                      />
+                      }
+                    </TouchableOpacity>
+                 </View>
+                 { passwordConfirmValidation ? null :
+                   <Animatable.View animation="fadeInLeft" duration={500}>
+                     <Text style={styles.errorMsg}>Password Confirmation must match Password above.</Text>
+                   </Animatable.View>
+                   }
+               </View>
+
+
+
+
+
+
+             }
+
 
         <View style={{marginTop:30}}>
         </View>
+        <View style={styles.loginButtonContainer}>
           <View style={styles.Button}>
-            <Button
-              alignSelf='center'
-              title="Register"
-              color='white'
-              onPress={() => setLogin(false)
-              }
-              />
-          </View>
-          <View style={styles.Button}>
-            <Button
+            {login ?
+              <Button
                 alignSelf='center'
-                title="Hide Modal"
+                title="Login"
                 color='white'
-                onPress={() => setModalToggle(false)
+                onPress={() => loginHandle()
+                }
+                /> :
+              <Button
+                alignSelf='center'
+                title="Sign Up"
+                color='white'
+                onPress={() => signupHandle()
                 }
                 />
+              }
+          </View>
+            <View style={styles.Button}>
+              {login ?
+
+                <Button
+                  alignSelf='center'
+                  title="Sign Up"
+                  color='white'
+                  onPress={() => setLogin(false)
+                  }
+                  /> :
+
+              <Button
+                alignSelf='center'
+                title="Login"
+                color='white'
+                onPress={() => setLogin(true)
+                }
+                />
+            }
+            </View>
+            <View style={styles.Button}>
+              <Button
+                  alignSelf='center'
+                  title="Cancel"
+                  color='white'
+                  onPress={() => setModalToggle(false)
+                  }
+                  />
+            </View>
           </View>
 
         </View>
-       :
-
-
-
-
-
-
-
-
-
-
-        <View style={styles.footer}>
-          <View style={styles.Button}>
-            <Button
-              alignSelf='center'
-              title="Login"
-              color='white'
-              onPress={() => setLogin(true)
-              }
-              />
-          </View>
-          <View style={{marginTop:30}}>
-          </View>
-          <View style={styles.Button}>
-            <Button
-                alignSelf='center'
-                title="Hide Modal"
-                color='white'
-                onPress={() => setModalToggle(false)
-                }
-                />
-          </View>
-          <Text>
-            Registration Page
-          </Text>
-        </View>
-      }
     </View>
 
   );
@@ -195,13 +303,30 @@ const styles = StyleSheet.create({
     fontSize: 30,
     justifyContent: 'center',
     textAlign: 'center',
-    marginBottom: 20
+    marginBottom: 5
+  },
+  headerSubtext: {
+    color: '#fff',
+    alignItems: 'center',
+    fontSize: 15,
+    justifyContent: 'center',
+    textAlign: 'center',
   },
 header: {
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50
+},
+logo:{
+  height:250,
+  width: 250,
+},
+logoContainer:{
+  justifyContent: 'center',
+  marginTop: 250,
+  paddingLeft: 50,
+
 },
 footer: {
     flex: 2,
@@ -215,16 +340,23 @@ footerTextInput:{
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
-    color: '#05375a',
+    color: 'black',
 },
+errorMsg: {
+       color: 'rgba(51, 52, 56, 0.64)',
+       fontSize: 14,
+   },
   Button:{
     width: "40%",
     height: 40,
     borderRadius:20,
     borderWidth: 1,
     backgroundColor: "rgba(51, 52, 56, 0.64)",
-    marginBottom: 50,
+    marginBottom: 20,
   },
+  loginButtonContainer:{
+    alignItems: 'center'
+  }
 });
 
 export default LoginModal;
