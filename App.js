@@ -26,6 +26,7 @@ const Tab = createBottomTabNavigator();
 // const topTab = createTopTabNavigator();
 
 export default function App() {
+  const [user, setUser] = useState(0)
   createHomeStack = () => {
     return(
       <Stack.Navigator
@@ -39,6 +40,7 @@ export default function App() {
         name="Home"
         component={Home}
         initialParams={{
+                user: 0
                   }}
         options={{ title: 'ShoreCast'}}
          />

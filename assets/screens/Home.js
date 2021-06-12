@@ -21,6 +21,7 @@ function Home() {
       <Image
         style={styles.images}
         source={require("../images/telluride.jpeg")}/>
+      {(route.params.user > 0) ? null:
       <View style={{flexDirection: 'row'}}>
         <View style={styles.loginRegisterButton}>
             <Button
@@ -31,7 +32,7 @@ function Home() {
             }
             />
           </View>
-        </View>
+        </View>}
         <View style={styles.forecastButton}>
           <Button
           alignSelf='center'
