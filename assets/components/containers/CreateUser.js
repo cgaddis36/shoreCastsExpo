@@ -1,6 +1,5 @@
 
-export default function CreateUser({ email, password }) {
-  console.log("Your Consolelog", email );
+export default function CreateUser({ email, password, route }) {
   return fetch("http://www.shorecasts.com/graphql", {
     method: "POST",
     headers: {
@@ -22,8 +21,8 @@ export default function CreateUser({ email, password }) {
   })
   .then(response => {
     response.json().then((data) => {
-        console.log("user data", data)
-
+        route.params.user = parseInt(data.data.createUser.user.id)
+        navigation.navigate("Home")
         })
       })
 }
