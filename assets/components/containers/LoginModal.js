@@ -10,6 +10,7 @@ import LinearGradient from 'react-native-svg';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
 import CreateUser from './CreateUser.js'
+import LoginUser from './LoginUser.js'
 
 function LoginModal({setModalToggle}) {
   const route = useRoute();
@@ -39,11 +40,13 @@ function LoginModal({setModalToggle}) {
     }
   }
   const loginHandle = () => {
-    console.log("Login Clickeed")
+    LoginUser({email, password, route, navigation})
+    setModalToggle(false)
   }
 
   const signupHandle = () => {
-    CreateUser({email, password})
+    CreateUser({email, password, route})
+    setModalToggle(false)
   }
 
 
@@ -66,7 +69,6 @@ function LoginModal({setModalToggle}) {
       setPasswordValidation(false)
     }
   }
-
 
   return (
     <View style={styles.modalContainer}>
