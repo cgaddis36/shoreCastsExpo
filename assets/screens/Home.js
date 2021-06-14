@@ -21,7 +21,10 @@ function Home() {
       <Image
         style={styles.images}
         source={require("../images/telluride.jpeg")}/>
-      {(route.params.user > 0) ? null:
+      {(route.params.user > 0) ?
+        <View style={[styles.loginRegisterButton, {backgroundColor: "rgb(30, 94, 238)", borderColor: "rgb(30, 94, 238)"}]}>
+        </View>
+        :
       <View style={{flexDirection: 'row'}}>
         <View style={styles.loginRegisterButton}>
             <Button
