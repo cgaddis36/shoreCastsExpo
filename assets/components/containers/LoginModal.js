@@ -45,7 +45,7 @@ function LoginModal({setModalToggle}) {
   }
 
   const signupHandle = () => {
-    CreateUser({email, password, route})
+    CreateUser({email, password, route, navigation})
     setModalToggle(false)
   }
 
