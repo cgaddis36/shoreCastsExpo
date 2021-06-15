@@ -8,7 +8,7 @@ function BusinessContainer({name, address, city, state, description, phoneNumber
 
 
   return (
-    <View style={{height:250,width:250, marginLeft: 10, borderColor: 'rgba(51, 52, 56, 0.64)',marginBottom: 10, borderRadius:20,borderWidth: 1, alignItems: "center", backgroundColor: 'teal'}}>
+    <View style={{height:200,width:200, marginLeft: 10, borderColor: 'rgba(51, 52, 56, 0.64)',marginBottom: 10, borderRadius:20,borderWidth: 1, alignItems: "center", backgroundColor: 'rgba(51, 52, 56, 0.64)'}}>
       <View style={{flexDirection: "column"}}>
         <Text style={{color: "lightgrey", marginLeft: 3, textAlign: 'center'}}>
           {name}
