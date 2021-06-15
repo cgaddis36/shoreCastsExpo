@@ -11,13 +11,12 @@ import { Icon } from 'react-native-vector-icons/FontAwesome';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 import { Ionicons, Entypo, MaterialCommunityIcons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import ReactDOM from "react-dom";
 import Home from './assets/screens/Home.js';
 import Forecast from './assets/screens/Forecast.js';
-import Guides from './assets/screens/Guides.js';
-import FlyShops from './assets/screens/FlyShops.js';
-import BaitShops from './assets/screens/BaitShops.js';
+import Services from './assets/screens/Services.js';
 import About from './assets/screens/About.js';
 import Loading from './assets/screens/Loading.js';
 
@@ -26,7 +25,6 @@ const Tab = createBottomTabNavigator();
 // const topTab = createTopTabNavigator();
 
 export default function App() {
-  const [user, setUser] = useState(0)
   createHomeStack = () => {
     return(
       <Stack.Navigator
@@ -40,7 +38,8 @@ export default function App() {
         name="Home"
         component={Home}
         initialParams={{
-                user: 0
+                user: 0,
+                zipcode: "",
                   }}
         options={{ title: 'ShoreCast'}}
          />
@@ -65,116 +64,77 @@ export default function App() {
            }}
          options={{ title: 'Loading Water Levels'}}
           />
-        </Stack.Navigator>
+
+      </Stack.Navigator>
         )
       };
-  createFlyShopsStack = () => {
+  createServicesStack = () => {
     return(
       <Stack.Navigator
-        initialRouteName="FlyShops"
+        initialRouteName="Services"
         screenOptions={{
           headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}>
         <Stack.Screen
-          name="FlyShops"
-          component={FlyShops}
-          options={{ title: 'FlyShops' }}/>
+          name="Services"
+          component={Services}
+          initialParams={{zipcode: "32541",
+                          serviceId: "1",
+                          distance: "50"}}
+          options={{ title: 'Services' }}/>
       </Stack.Navigator>
       )
     };
-   createBaitShopsStack = () => {
-     return(
-      <Stack.Navigator
-        initialRouteName="BaitShops"
-        screenOptions={{
-          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
-          headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: 'bold' }
-        }}>
-        <Stack.Screen
-          name="BaitShops"
-          component={BaitShops}
-          options={{ title: 'BaitShops' }}/>
-      </Stack.Navigator>
-      )
-      };
-   createGuidesStack = () => {
-     return(
-      <Stack.Navigator
-        initialRouteName="Guides"
-        screenOptions={{
-          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
-          headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: 'bold' }
-        }}>
-        <Stack.Screen
-          name="Guides"
-          component={Guides}
-          options={{ title: 'Guides' }}/>
-      </Stack.Navigator>
-      )
-  };
-   createAboutStack = () => {
-     return(
-      <Stack.Navigator
-        initialRouteName="About"
-        screenOptions={{
-          headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
-          headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: 'bold' }
-        }}>
-        <Stack.Screen
-          name="About"
-          component={About}
-          options={{ title: 'About' }}/>
-      </Stack.Navigator>
-      )
-    };
+
+  createAboutStack = () => {
+    return(
+     <Stack.Navigator
+       initialRouteName="About"
+       screenOptions={{
+         headerStyle: { backgroundColor: 'rgb(30, 94, 238)' },
+         headerTintColor: '#fff',
+         headerTitleStyle: { fontWeight: 'bold' }
+       }}>
+       <Stack.Screen
+         name="About"
+         component={About}
+         initialParams={{
+           }}
+         options={{ title: 'About' }}/>
+     </Stack.Navigator>
+     )
+   };
+
+
   return (
   <NavigationContainer>
     <Tab.Navigator
       initialRouteName="Feed"
+      zipcode={"32541"}
       tabBarOptions={{
         activeTintColor: 'teal',
       }}>
       <Tab.Screen
-        name="Home"
+        name="Forecast"
         component={createHomeStack}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Forecast',
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="home" size={size} color={color}/>
+            <MaterialCommunityIcons name="weather-partly-lightning" size={size} color={color}/>
             )
         }}  />
       <Tab.Screen
-        name="Fly Shops"
-        component={createFlyShopsStack}
+        name="Services"
+        component={createServicesStack}
         options={{
-          tabBarLabel: 'FlyShops',
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="bug" size={size} color={color}/>
-            )
-        }} />
-      <Tab.Screen
-        name="Bait Shops"
-        component={createBaitShopsStack}
-        options={{
-          tabBarLabel: 'BaitShops',
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="hook" size={size} color={color}/>
-            )
-        }}  />
-      <Tab.Screen
-        name="Guides"
-        component={createGuidesStack}
-        options={{
-          tabBarLabel: 'Guides',
+          tabBarLabel: 'Services',
           tabBarIcon: ({color, size}) => (
             <FontAwesome5 name="fish" size={size} color={color}/>
             )
         }} />
+
       <Tab.Screen
         name="About"
         component={createAboutStack}
