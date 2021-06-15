@@ -9,8 +9,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import LinearGradient from 'react-native-svg';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-import CreateUser from './CreateUser.js'
-import LoginUser from './LoginUser.js'
+import CreateUser from '../../helpers/apiCalls/CreateUser.js'
+import LoginUser from '../../helpers/apiCalls/LoginUser.js'
 
 function LoginModal({setModalToggle}) {
   const route = useRoute();
@@ -30,7 +30,6 @@ function LoginModal({setModalToggle}) {
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [emailValidation, setEmailValidation] = useState(false)
 
-
   const passwordConfirmInputChange = (text) => {
     if(text.trim() == password) {
       setPasswordConfirmValidation(true)
@@ -45,7 +44,7 @@ function LoginModal({setModalToggle}) {
   }
 
   const signupHandle = () => {
-    CreateUser({email, password, route})
+    CreateUser({email, password, route, navigation})
     setModalToggle(false)
   }
 

@@ -1,12 +1,17 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button } from 'react-native';
+import {  useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 
-function About({history}) {
+function About({route, navigation}) {
+
+  const state = useNavigationState(state => state);
+  console.log("About Navigation", state)
+
   return (
     <View
         style={styles.background}>
       <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>ShoreCasts</Text>
+        <Text style={styles.logoText}>About Screen</Text>
       </View>
     </View>
   );
@@ -22,7 +27,8 @@ const styles = StyleSheet.create({
   logoContainer:{
     position: 'absolute',
     top: 70,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 200
     },
   logoText:{
     color: 'white'
