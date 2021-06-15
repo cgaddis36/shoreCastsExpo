@@ -2,11 +2,10 @@ import React, {Component, useState} from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, Button, Alert, Modal } from 'react-native';
 import validateZipcode from '../helpers/ZipcodeValidation.js'
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
-import LoginModal from '../components/containers/LoginModal.js';
+import LoginModal from '../components/modals/LoginModal.js';
 
-function Home() {
-  const route = useRoute();
-  const navigation = useNavigation();
+function Home({navigation, route}) {
+  // const route = useRoute();
   const state = useNavigationState(state => state);
   const [modalToggle, setModalToggle] = useState(false)
 
@@ -51,7 +50,8 @@ function Home() {
               },
               {
                 text: 'Get Forecast',
-                onPress: (text) => navigation.navigate("Loading", {
+                onPress: (text) =>
+                navigation.navigate("Loading", {
                   zipcode: text,
                   waterLevelsToday: [],
                   loading: true
