@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { ImageBackground, ScrollView, StyleSheet, View, Image, Text, Button } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View, Image, Text, Button, Alert } from 'react-native';
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 import BusinessContainer from '../components/containers/BusinessContainer.js';
 
@@ -9,7 +9,6 @@ function Services() {
   const state = useNavigationState(state => state);
   const rootURL = "http://www.shorecasts.com/graphql";
   const [businessData, setBusinessData] = useState([])
-
 
   useFocusEffect(
     React.useCallback(() => {
@@ -42,15 +41,45 @@ function Services() {
         }))
     return (
         <View
-          style={styles.background}>
+          style={[styles.background, {alignItems: 'top', justifyContent: 'top'}]}>
+          <View style={{marginTop: 10, flexDirection: 'row'}}>
           {businessData == "" ?
         <View style={styles.logoContainer}>
           <Text style={styles.logoText}>SHOPS LOADING...</Text>
         </View>:
-        <View style={styles.logoContainer}>
 
-        </View>}
-        <View style={{marginTop: 10}}>
+        <View style={{flexDirection: 'column', flex: 1}}>
+          <Button
+            alignSelf='center'
+            title="Fly Shops"
+            color='white'
+            onPress={() =>
+              navigation.navigate("Services", {
+                serviceId: "1"
+              })
+            }
+            />
+          <Button
+            alignSelf='center'
+            title="Bait Shops"
+            color='white'
+            onPress={() =>
+              navigation.navigate("Services", {
+                serviceId: "2"
+              })            }
+            />
+          <Button
+            alignSelf='center'
+            title="Guides"
+            color='white'
+            onPress={() =>
+              navigation.navigate("Services", {
+                serviceId: "3"
+              })}
+            />
+        </View>
+      }
+        <View style={{flex: 2}}>
           <ScrollView>
             {
               businessData.map((business, index) =>
@@ -67,6 +96,39 @@ function Services() {
             }
           </ScrollView>
         </View>
+        {businessData == "" ? null :
+          <View style={{flexDirection: 'column', flex: 1}}>
+            <Button
+              alignSelf='center'
+              title="Change Zipcode"
+              color='white'
+              width='25'
+              onPress={() => Alert.prompt(
+                "Enter Zipcode",
+                "Retrieve Businesses for the area",
+                [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed')
+                  },
+                  {
+                    text: 'Get Shops',
+                    onPress: (text) =>
+                    navigation.navigate("Services", {
+                      zipcode: text
+                    })
+                  }
+                ]
+              )
+
+              }
+              />
+
+
+
+
+          </View>}
+        </View>
       </View>
     );
   }
@@ -81,6 +143,7 @@ function Services() {
     logoContainer:{
       position: 'absolute',
       top: 70,
+      marginTop: 300,
       alignItems: 'center'
       },
     logoText:{
