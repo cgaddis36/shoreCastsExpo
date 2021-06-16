@@ -95,10 +95,6 @@ function Services() {
               style={styles.buttonContainer}>
               <Text style={styles.buttonText}>Zipcode</Text>
             </TouchableOpacity>
-
-
-
-
           </View>}
         </View>
       </View>
@@ -114,7 +110,7 @@ function Services() {
     },
     buttonContainer: {
        elevation: 8,
-       backgroundColor: "#009688",
+       backgroundColor: "teal",
        borderRadius: 20,
        paddingVertical: 10,
        paddingHorizontal: 12,
