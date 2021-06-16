@@ -30,7 +30,8 @@ function Services() {
             onPress={() =>
               navigation.navigate("Services", {
                 serviceId: "1",
-                loading: true
+                loading: true,
+                error: null
               }) }
             style={styles.buttonContainer}>
               <Text style={styles.buttonText}>Fly Shops</Text>
@@ -39,7 +40,8 @@ function Services() {
             onPress={() =>
               navigation.navigate("Services", {
                 serviceId: "2",
-                loading: true
+                loading: true,
+                error: null
               }) }
             style={styles.buttonContainer}>
               <Text style={styles.buttonText}>Bait Shops</Text>
@@ -48,7 +50,8 @@ function Services() {
               onPress={() =>
                 navigation.navigate("Services", {
                   serviceId: "3",
-                  loading: true
+                  loading: true,
+                  error: null
                 }) }
               style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Guides</Text>
@@ -88,13 +91,21 @@ function Services() {
                     onPress: (text) =>
                     navigation.navigate("Services", {
                       zipcode: text,
-                      loading: true
+                      loading: true,
+                      error: null
                     })
                   }]
                 )}
               style={styles.buttonContainer}>
               <Text style={styles.buttonText}>Zipcode</Text>
             </TouchableOpacity>
+            {route.params.error == null ? null :
+              <View style={styles.errorContainer}>
+                <Text style={styles.errorText}>
+                  {route.params.error}
+                </Text>
+              </View>
+            }
           </View>}
         </View>
       </View>
@@ -122,7 +133,20 @@ function Services() {
        fontWeight: "bold",
        alignSelf: "center",
        textTransform: "uppercase"
-     }
+     },
+     errorContainer: {
+        backgroundColor: "lightgrey",
+        borderRadius: 20,
+        paddingVertical: 10,
+        marginTop: 10
+      },
+      errorText: {
+        fontSize: 10,
+        color: "red",
+        alignSelf: "center",
+        paddingLeft: 5,
+        paddingRight: 5
+      }
 
 
 });
