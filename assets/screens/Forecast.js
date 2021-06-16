@@ -210,10 +210,6 @@ const styles = StyleSheet.create({
       color: 'white',
       textAlign: 'center'
     },
-    // loadingText:{
-    //   fontSize: 30,
-    //   marginBottom: 500
-    // }
 });
 
 export default Forecast;
