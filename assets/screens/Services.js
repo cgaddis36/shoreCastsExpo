@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
-import { ImageBackground, ScrollView, StyleSheet, View, Image, Text, Button, Alert } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { ImageBackground, ScrollView, StyleSheet, View, Image, Text, Button, Alert, TouchableOpacity } from 'react-native';
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
+import getBusinessesByLocation from '../helpers/apiCalls/GetBusinessesByLocation.js';
 import BusinessContainer from '../components/containers/BusinessContainer.js';
+
 
 function Services() {
   const route = useRoute();
@@ -12,75 +14,49 @@ function Services() {
 
   useFocusEffect(
     React.useCallback(() => {
-      fetch(`${rootURL}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: `
-          query{
-            getBusinessesByLocation(zip: "${route.params.zipcode}", distance: "${route.params.distance}", serviceId: "${route.params.serviceId}"){
-              id
-              name
-              address
-              phoneNumber
-              city
-              state
-              description
-            }}`,
-          }),
-        })
-        .then(response => {
-          response.json().then((data) => {
-            setBusinessData(data["data"]["getBusinessesByLocation"])
-            console.log(businessData)
-
-            })
-          })
-        }))
+      getBusinessesByLocation({route, navigation, setBusinessData})
+    }))
     return (
         <View
           style={[styles.background, {alignItems: 'top', justifyContent: 'top'}]}>
           <View style={{marginTop: 10, flexDirection: 'row'}}>
           {businessData == "" ?
-        <View style={styles.logoContainer}>
-          <Text style={styles.logoText}>SHOPS LOADING...</Text>
+        <View style={[styles.buttonContainer, {marginLeft: 150, marginTop: 50}]}>
+          <Text style={styles.buttonText}>SHOPS LOADING...</Text>
         </View>:
 
-        <View style={{flexDirection: 'column', flex: 1}}>
-          <Button
-            alignSelf='center'
-            title="Fly Shops"
-            color='white'
+        <View style={{flexDirection: 'column', flex: 1, marginLeft: 5}}>
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("Services", {
-                serviceId: "1"
-              })
-            }
-            />
-          <Button
-            alignSelf='center'
-            title="Bait Shops"
-            color='white'
+                serviceId: "1",
+                loading: true
+              }) }
+            style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Fly Shops</Text>
+            </TouchableOpacity>
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("Services", {
-                serviceId: "2"
-              })            }
-            />
-          <Button
-            alignSelf='center'
-            title="Guides"
-            color='white'
-            onPress={() =>
-              navigation.navigate("Services", {
-                serviceId: "3"
-              })}
-            />
+                serviceId: "2",
+                loading: true
+              }) }
+            style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Bait Shops</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Services", {
+                  serviceId: "3",
+                  loading: true
+                }) }
+              style={styles.buttonContainer}>
+                <Text style={styles.buttonText}>Guides</Text>
+              </TouchableOpacity>
         </View>
       }
-        <View style={{flex: 2}}>
-          <ScrollView>
+        <View style={{flex: 2, marginLeft: 5}}>
+          <ScrollView showsVerticalScrollIndicator={false}>
             {
               businessData.map((business, index) =>
               <BusinessContainer
@@ -97,12 +73,8 @@ function Services() {
           </ScrollView>
         </View>
         {businessData == "" ? null :
-          <View style={{flexDirection: 'column', flex: 1}}>
-            <Button
-              alignSelf='center'
-              title="Change Zipcode"
-              color='white'
-              width='25'
+          <View style={{flexDirection: 'column', flex: 1, marginRight: 5}}>
+            <TouchableOpacity
               onPress={() => Alert.prompt(
                 "Enter Zipcode",
                 "Retrieve Businesses for the area",
@@ -115,14 +87,14 @@ function Services() {
                     text: 'Get Shops',
                     onPress: (text) =>
                     navigation.navigate("Services", {
-                      zipcode: text
+                      zipcode: text,
+                      loading: true
                     })
-                  }
-                ]
-              )
-
-              }
-              />
+                  }]
+                )}
+              style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Zipcode</Text>
+            </TouchableOpacity>
 
 
 
@@ -140,25 +112,22 @@ function Services() {
       alignItems: 'center',
       backgroundColor: "rgb(30, 94, 238)"
     },
-    logoContainer:{
-      position: 'absolute',
-      top: 70,
-      marginTop: 300,
-      alignItems: 'center'
-      },
-    logoText:{
-      color: 'white'
-    },
-    button1:{
-      width: "100%",
-      height: 70,
-      backgroundColor: "rgb(31, 112, 219)"
-    },
-    button2:{
-      width: "100%",
-      height: 70,
-      backgroundColor: "rgb(31, 219, 78)"
-    }
+    buttonContainer: {
+       elevation: 8,
+       backgroundColor: "#009688",
+       borderRadius: 20,
+       paddingVertical: 10,
+       paddingHorizontal: 12,
+       marginBottom: 10
+     },
+     buttonText: {
+       fontSize: 10,
+       color: "#fff",
+       fontWeight: "bold",
+       alignSelf: "center",
+       textTransform: "uppercase"
+     }
+
 
 });
 

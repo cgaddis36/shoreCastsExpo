@@ -82,7 +82,8 @@ export default function App() {
           component={Services}
           initialParams={{zipcode: "32541",
                           serviceId: "1",
-                          distance: "50"}}
+                          distance: "50",
+                          loading: true}}
           options={{ title: 'Services' }}/>
       </Stack.Navigator>
       )
