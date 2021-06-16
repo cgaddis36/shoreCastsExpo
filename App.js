@@ -40,6 +40,7 @@ export default function App() {
         initialParams={{
                 user: 0,
                 zipcode: "",
+                error: null
                   }}
         options={{ title: 'ShoreCast'}}
          />

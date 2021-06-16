@@ -8,10 +8,22 @@ function Home({navigation, route}) {
   // const route = useRoute();
   const state = useNavigationState(state => state);
   const [modalToggle, setModalToggle] = useState(false)
+  const handlePress = () => {
+    setModalToggle(true)
+    route.params.error = null
+  }
 
   return (
     <View
       style={styles.background}>
+      {route.params.error == null ?
+        null :
+        <View>
+          <Text style={{fontSize: 20, textAlign: 'center', color: 'white', paddingBottom: 25}}>
+            {route.params.error}
+          </Text>
+        </View>
+      }
       <Modal visible={modalToggle}>
         <LoginModal
           setModalToggle={setModalToggle}
@@ -30,7 +42,7 @@ function Home({navigation, route}) {
             alignSelf='center'
             title="Login"
             color='white'
-            onPress={() => setModalToggle(true)
+            onPress={() => handlePress()
             }
             />
           </View>
@@ -54,7 +66,8 @@ function Home({navigation, route}) {
                 navigation.navigate("Loading", {
                   zipcode: text,
                   waterLevelsToday: [],
-                  loading: true
+                  loading: true,
+                  error: null
                 })
               }
             ]
