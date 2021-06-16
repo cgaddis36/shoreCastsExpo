@@ -5,10 +5,8 @@ import { useFocusEffect,
          useRoute,
          useNavigationState } from '@react-navigation/native';
 function BusinessContainer({name, address, city, state, description, phoneNumber}) {
-
-
   return (
-    <View style={{height:250,width:250, marginLeft: 10, borderColor: 'rgba(51, 52, 56, 0.64)',marginBottom: 10, borderRadius:20,borderWidth: 1, alignItems: "center", backgroundColor: 'teal'}}>
+    <View style={{height:196,width:196, borderColor: 'rgba(51, 52, 56, 0.64)',marginBottom: 10, borderRadius:20,borderWidth: 1, alignItems: "center", backgroundColor: 'rgba(51, 52, 56, 0.64)'}}>
       <View style={{flexDirection: "column"}}>
         <Text style={{color: "lightgrey", marginLeft: 3, textAlign: 'center'}}>
           {name}
@@ -22,7 +20,7 @@ function BusinessContainer({name, address, city, state, description, phoneNumber
         <Text style={{color: "lightgrey", fontSize: 10, textAlign: 'center'}}>
           {phoneNumber}
         </Text>
-        <Text style={{color: "lightgrey", fontSize: 10, marginLeft: 5, marginRight: 5, paddingTop: 5}}>
+        <Text style={{color: "lightgrey", fontSize: 10, marginLeft: 10, marginRight: 10, paddingTop: 5}}>
           {description}
         </Text>
       </View>
