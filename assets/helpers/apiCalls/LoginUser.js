@@ -23,9 +23,9 @@ export default function LoginUser({ email, password, route, navigation }) {
         route.params.user = parseInt(data.data.loginUser.user.id)
         navigation.navigate("Home")
         })
-        .catch((error) =>
+        .catch((error) => {
         console.log("error", error),
         navigation.navigate("Home", {error: "Invalid login Credentials. Please Try Again or Sign Up!"})
-      )
+      })
       })
 }
