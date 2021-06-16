@@ -21,11 +21,19 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
     })
     .then(response => {
       response.json().then((data) => {
-        if(route.params.loading == true){
-          setBusinessData(data["data"]["getBusinessesByLocation"])
-          console.log(data)
-          route.params.loading = false
-        }
+        if(route.params.loading == true) {
+            setBusinessData(data["data"]["getBusinessesByLocation"])
+            console.log(data)
+              route.params.error = null
+              route.params.loading = false
+              navigation.navigate("Services")
+            }
+          })
+          .catch((error) => {
+            console.log("error", error)
+              route.params.error = "No stores for this category currently in our database, try submitting one below.",
+              route.params.loading = false
+              navigation.navigate("Services")
+          })
         })
-      })
 }
