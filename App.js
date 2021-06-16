@@ -80,10 +80,13 @@ export default function App() {
         <Stack.Screen
           name="Services"
           component={Services}
-          initialParams={{zipcode: "32541",
-                          serviceId: "1",
-                          distance: "50",
-                          loading: true}}
+          initialParams={{
+            zipcode: "32541",
+            serviceId: "1",
+            distance: "50",
+            loading: true,
+            error: null
+            }}
           options={{ title: 'Services' }}/>
       </Stack.Navigator>
       )
