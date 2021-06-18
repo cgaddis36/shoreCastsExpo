@@ -31,7 +31,7 @@ function Home({navigation, route}) {
       </Modal>
       <Image
         style={styles.images}
-        source={require("../images/telluride.jpeg")}/>
+        source={require("../images/oceanWater.jpg")}/>
       {(route.params.user > 0) ?
         <View style={[styles.loginRegisterButton, {backgroundColor: "rgb(30, 94, 238)", borderColor: "rgb(30, 94, 238)"}]}>
         </View>
