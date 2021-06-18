@@ -64,12 +64,15 @@ function Services() {
               businessData.map((business, index) =>
               <BusinessContainer
                 key={index}
+                id={business["id"]}
                 name={business["name"]}
                 address={business["address"]}
                 city={business["city"]}
                 state={business["state"]}
                 description={business["description"]}
                 phoneNumber={business["phoneNumber"]}
+                reviews={business["reviews"]}
+                navigation={navigation}
                 />
             )
             }

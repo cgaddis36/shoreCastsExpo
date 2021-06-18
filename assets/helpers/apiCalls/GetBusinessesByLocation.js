@@ -16,6 +16,12 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
           city
           state
           description
+          reviews {
+              title
+              comment
+              rating
+              userId
+          }
         }}`,
       }),
     })

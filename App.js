@@ -19,6 +19,7 @@ import Forecast from './assets/screens/Forecast.js';
 import Services from './assets/screens/Services.js';
 import About from './assets/screens/About.js';
 import Loading from './assets/screens/Loading.js';
+import BusinessReviews from './assets/screens/BusinessReviews.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -89,6 +90,13 @@ export default function App() {
             error: null
             }}
           options={{ title: 'Services' }}/>
+          <Stack.Screen
+            name="Reviews"
+            component={BusinessReviews}
+            initialParams={{
+              error: null
+              }}
+            options={{ title: 'Reviews' }}/>
       </Stack.Navigator>
       )
     };
