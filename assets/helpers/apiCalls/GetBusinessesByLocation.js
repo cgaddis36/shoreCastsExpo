@@ -22,6 +22,11 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
               rating
               userId
           }
+          businessServices {
+            id
+            businessId
+            serviceId
+          }
         }}`,
       }),
     })

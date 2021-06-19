@@ -1,4 +1,3 @@
-
 export default function CreateUser({ email, password, route, navigation }) {
   return fetch("http://www.shorecasts.com/graphql", {
     method: "POST",

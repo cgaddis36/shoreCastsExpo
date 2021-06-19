@@ -5,23 +5,23 @@ import { useFocusEffect,
          useNavigation,
          useRoute,
          useNavigationState } from '@react-navigation/native';
-function BusinessContainer({id, name, address, city, state, description, phoneNumber, reviews, navigation}) {
+function BusinessContainer({id, name, address, city, state, description, phoneNumber, reviews, navigation, businessServices}) {
   return (
     <View style={styles.businessContainer}>
       <View style={{flexDirection: "column"}}>
         <Text style={{color: "white", fontWeight: 'bold', marginLeft: 3, textAlign: 'center'}}>
           {name}
         </Text>
-        <Text style={[styles.businessText, {paddingTop: 5}]}>
+        <Text style={[styles.businessText, {paddingTop: 5, fontWeight: 'bold', }]}>
         {address}
         </Text>
-        <Text style={styles.businessText}>
-        {city} {state}
+        <Text style={[styles.businessText, {fontWeight: 'bold'}]}>
+        {city}, {state}
         </Text>
-        <Text style={styles.businessText}>
+        <Text style={[styles.businessText, {fontWeight: 'bold'}]}>
           {phoneNumber}
         </Text>
-        <Text style={{color: "white", fontSize: 10, marginLeft: 10, marginRight: 10, paddingTop: 5}}>
+        <Text style={{color: "white", fontSize: 10, fontWeight: 'bold', marginLeft: 10, marginRight: 10, paddingTop: 5}}>
           {description}
         </Text>
 
@@ -36,6 +36,7 @@ function BusinessContainer({id, name, address, city, state, description, phoneNu
               description: {description},
               phoneNumber: {phoneNumber},
               reviews: {reviews},
+              businessServices: {businessServices},
               error: null
             }) }
           style={styles.buttonContainer}>
@@ -65,15 +66,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: 'rgba(51, 52, 56, 0.64)'
   },
-
   buttonContainer: {
      elevation: 8,
      backgroundColor: "teal",
      borderRadius: 20,
-     paddingVertical: 5,
-     // paddingHorizontal: 12,
+     paddingVertical: 2,
      marginBottom: 5,
-     marginTop: 5
+     marginTop: 5,
+     width: 150,
+     alignSelf: 'center'
    },
    businessText: {
      color: "white",
