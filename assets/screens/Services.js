@@ -73,6 +73,7 @@ function Services() {
                 phoneNumber={business["phoneNumber"]}
                 reviews={business["reviews"]}
                 navigation={navigation}
+                businessServices={business["businessServices"]}
                 />
             )
             }
@@ -131,7 +132,7 @@ function Services() {
        marginBottom: 10
      },
      buttonText: {
-       fontSize: 10,
+       fontSize: 12,
        color: "#fff",
        fontWeight: "bold",
        alignSelf: "center",
