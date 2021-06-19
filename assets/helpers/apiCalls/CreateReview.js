@@ -1,4 +1,4 @@
-export default function CreateReview({ title, comment, rating, navigation, businessServiceId, userId }) {
+export default function CreateReview({ title, comment, rating, businessServiceId, navigation }) {
   return fetch("http://www.shorecasts.com/graphql", {
     method: "POST",
     headers: {
@@ -9,7 +9,7 @@ export default function CreateReview({ title, comment, rating, navigation, busin
         createReview(input: {title: "${title}",
                               comment: "${comment}",
                               businessServiceId: "${businessServiceId}",
-                              userId: "${userId}",
+                              userId: "1",
                               rating: "${rating}"
         }) {
          review {
@@ -25,12 +25,12 @@ export default function CreateReview({ title, comment, rating, navigation, busin
   })
   .then(response => {
     response.json().then((data) => {
-        route.params.user = parseInt(data.data.createUser.user.id)
-        navigation.navigate("Home")
+        console.log(data)
+        navigation.navigate("Services")
         })
         .catch((error) => {
         console.log("error", error),
-        navigation.navigate("Home", {error: "Invalid login Credentials. Please Try Again or Sign Up!"})
+        navigation.navigate("Home", {error: "Please enter all fields and try again!"})
       })
       })
 }

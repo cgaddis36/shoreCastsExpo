@@ -1,26 +1,29 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, TouchableOpacity, View, Image, Text, Button, ScrollView } from 'react-native';
+import React, {useState} from 'react';
+import { ImageBackground, Modal, StyleSheet, TouchableOpacity, View, Image, Text, Button, ScrollView } from 'react-native';
 import ReviewContainer from '../components/containers/ReviewContainer.js'
+import ReviewModal from '../components/modals/ReviewModal.js'
 import { AntDesign } from '@expo/vector-icons';
 import {  useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 
 function BusinessReviews({route, navigation}) {
 
   const state = useNavigationState(state => state);
-  console.log("BusinessReviews Navigation", route.params.reviews)
-  console.log("BusinessReviews Navigation", route.params.businessServices.businessServices)
+  const [reviewModalToggle, setReviewModalToggle] = useState(false)
+  console.log("BusinessReviews params", route.params.name.name)
 
   return (
     <View style={styles.background}>
+    <Modal visible={reviewModalToggle}>
+      <ReviewModal
+        setReviewModalToggle={setReviewModalToggle}
+        name={route.params.name.name}
+        />
+    </Modal>
       <View style={{flexDirection: 'row'}}>
         <View style={styles.logo}>
-
-
-
         <TouchableOpacity
           onPress={() =>
-
-            console.log("add review pressed.")
+            setReviewModalToggle(true)
             }
           style={styles.buttonContainer}>
             <Text style={styles.buttonText}>Add Review</Text>
@@ -57,9 +60,11 @@ function BusinessReviews({route, navigation}) {
           </View>
         </View>
         :
-        <Image source={require('../images/default.png')}
-        style={styles.logo}
-        />
+        <View style={styles.aboutContainer}>
+          <Text style={{color: 'white', paddingHorizontal: 5, paddingTop: 5}}>
+            No reviews have been left yet, add one to be our first and help us get started.
+          </Text>
+        </View>
       }
     </View>
   );
