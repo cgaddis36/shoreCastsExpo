@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {AirbnbRating} from "react-native-ratings";
+import React, { Component } from 'react';
+import { AirbnbRating } from "react-native-ratings";
 import { ImageBackground, StyleSheet, View, Image, Text, Button, TouchableOpacity } from 'react-native';
 import { useFocusEffect,
          useNavigation,
@@ -24,7 +24,6 @@ function BusinessContainer({id, name, address, city, state, description, phoneNu
         <Text style={{color: "white", fontSize: 10, fontWeight: 'bold', marginLeft: 10, marginRight: 10, paddingTop: 5}}>
           {description}
         </Text>
-
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Reviews", {
