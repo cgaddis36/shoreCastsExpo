@@ -5,7 +5,7 @@ import { useFocusEffect,
          useNavigation,
          useRoute,
          useNavigationState } from '@react-navigation/native';
-function BusinessContainer({id, name, address, city, state, description, phoneNumber, reviews, navigation, businessServices, services}) {
+function BusinessContainer({id, name, address, city, state, zip, description, phoneNumber, reviews, navigation, businessServices, services}) {
   return (
     <View style={styles.businessContainer}>
       <View style={{flexDirection: "column"}}>
@@ -16,7 +16,7 @@ function BusinessContainer({id, name, address, city, state, description, phoneNu
         {address}
         </Text>
         <Text style={[styles.businessText, {fontWeight: 'bold'}]}>
-        {city}, {state}
+        {city}, {state} {zip}
         </Text>
         <Text style={[styles.businessText, {fontWeight: 'bold'}]}>
           {phoneNumber}
