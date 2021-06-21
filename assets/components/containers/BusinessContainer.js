@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {AirbnbRating} from "react-native-ratings";
+import React, { Component } from 'react';
+import { AirbnbRating } from "react-native-ratings";
 import { ImageBackground, StyleSheet, View, Image, Text, Button, TouchableOpacity } from 'react-native';
 import { useFocusEffect,
          useNavigation,
          useRoute,
          useNavigationState } from '@react-navigation/native';
-function BusinessContainer({id, name, address, city, state, description, phoneNumber, reviews, navigation, businessServices}) {
+function BusinessContainer({id, name, address, city, state, description, phoneNumber, reviews, navigation, businessServices, services}) {
   return (
     <View style={styles.businessContainer}>
       <View style={{flexDirection: "column"}}>
@@ -24,7 +24,6 @@ function BusinessContainer({id, name, address, city, state, description, phoneNu
         <Text style={{color: "white", fontSize: 10, fontWeight: 'bold', marginLeft: 10, marginRight: 10, paddingTop: 5}}>
           {description}
         </Text>
-
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Reviews", {
@@ -37,6 +36,7 @@ function BusinessContainer({id, name, address, city, state, description, phoneNu
               phoneNumber: {phoneNumber},
               reviews: {reviews},
               businessServices: {businessServices},
+              services: {services},
               error: null
             }) }
           style={styles.buttonContainer}>

@@ -6,10 +6,8 @@ import { AntDesign } from '@expo/vector-icons';
 import {  useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 
 function BusinessReviews({route, navigation}) {
-
   const state = useNavigationState(state => state);
   const [reviewModalToggle, setReviewModalToggle] = useState(false)
-  console.log("BusinessReviews params", route.params.name.name)
 
   return (
     <View style={styles.background}>

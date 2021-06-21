@@ -48,7 +48,6 @@ function LoginModal({setModalToggle}) {
     setModalToggle(false)
   }
 
-
   const emailInputChange = (text) => {
     if(text.includes("@") && text.includes(".")) {
       setEmailValidation(true)
@@ -206,15 +205,7 @@ function LoginModal({setModalToggle}) {
                    </Animatable.View>
                    }
                </View>
-
-
-
-
-
-
              }
-
-
         <View style={{marginTop:30}}>
         </View>
         <View style={styles.loginButtonContainer}>
@@ -239,7 +230,6 @@ function LoginModal({setModalToggle}) {
           </View>
             <View style={styles.Button}>
               {login ?
-
                 <Button
                   alignSelf='center'
                   title="Sign Up"
@@ -247,7 +237,6 @@ function LoginModal({setModalToggle}) {
                   onPress={() => setLogin(false)
                   }
                   /> :
-
               <Button
                 alignSelf='center'
                 title="Login"
@@ -270,7 +259,6 @@ function LoginModal({setModalToggle}) {
 
         </View>
     </View>
-
   );
 }
 

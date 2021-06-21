@@ -1,12 +1,9 @@
-import React, {Component, useState} from 'react';
-import { ImageBackground, StyleSheet, View, Image, Text, Button, Alert, Modal } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Image, Text, Button, Alert, Modal } from 'react-native';
 import validateZipcode from '../helpers/ZipcodeValidation.js'
-import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 import LoginModal from '../components/modals/LoginModal.js';
 
 function Home({navigation, route}) {
-  // const route = useRoute();
-  const state = useNavigationState(state => state);
   const [modalToggle, setModalToggle] = useState(false)
   const handlePress = () => {
     setModalToggle(true)
@@ -16,39 +13,43 @@ function Home({navigation, route}) {
   return (
     <View
       style={styles.background}>
-      {route.params.error == null ?
-        null :
-        <View>
-          <Text style={{fontSize: 20, textAlign: 'center', color: 'white', paddingBottom: 25}}>
-            {route.params.error}
-          </Text>
-        </View>
-      }
+      <Image source={require('../images/default.png')}
+        style={styles.logo}
+        />
+        {route.params.error == null ?
+          null :
+          <View>
+            <Text style={{fontSize: 20, textAlign: 'center', color: 'white', paddingBottom: 25}}>
+              {route.params.error}
+            </Text>
+          </View>
+          }
       <Modal visible={modalToggle}>
         <LoginModal
           setModalToggle={setModalToggle}
           />
       </Modal>
-      <Image
-        style={styles.images}
-        source={require("../images/oceanWater.jpg")}/>
       {(route.params.user > 0) ?
         <View style={[styles.loginRegisterButton, {backgroundColor: "rgb(30, 94, 238)", borderColor: "rgb(30, 94, 238)"}]}>
         </View>
         :
-      <View style={{flexDirection: 'row'}}>
-        <View style={styles.loginRegisterButton}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={styles.loginRegisterButton}>
             <Button
-            alignSelf='center'
-            title="Login"
-            color='white'
-            onPress={() => handlePress()
-            }
-            />
+              alignSelf='center'
+              title="Login"
+              color='white'
+              onPress={() => handlePress()
+                }
+              />
           </View>
         </View>}
-        <View style={styles.forecastButton}>
-          <Button
+      <Image
+        style={styles.images}
+        source={require("../images/oceanWater.jpg")}
+        />
+      <View style={styles.forecastButton}>
+        <Button
           alignSelf='center'
           title="Get Forecast"
           color='white'
@@ -68,13 +69,12 @@ function Home({navigation, route}) {
                   waterLevelsToday: [],
                   loading: true,
                   error: null
-                })
-              }
-            ]
-          )
-          }
+                  })
+                }
+              ]
+            )}
           />
-        </View>
+      </View>
     </View>
   );
 };
@@ -85,6 +85,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: "rgb(30, 94, 238)"
+  },
+  logo:{
+    height:250,
+    width: 250
   },
   forecastButton:{
     width: "40%",
@@ -102,26 +106,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(51, 52, 56, 0.64)",
     marginBottom: 50,
   },
-  modal:{
-    height: 400,
-    marginTop: 200,
-    backgroundColor: "rgb(30, 94, 238)"
-
-  },
   images:{
     height: 350,
     width: 350,
     borderRadius: 20,
     borderWidth: 1,
-    marginBottom: 25
-  },
-  button:{
-    width: "40%",
-    height: 40,
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: "rgba(51, 52, 56, 0.64)",
-    marginBottom: 25
+    marginBottom: 50
   },
 })
 

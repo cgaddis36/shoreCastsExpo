@@ -3,9 +3,7 @@ import { ImageBackground, StyleSheet, View, Image, Text, Button } from 'react-na
 import {  useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 
 function About({route, navigation}) {
-
   const state = useNavigationState(state => state);
-  console.log("About Navigation", state)
 
   return (
     <View

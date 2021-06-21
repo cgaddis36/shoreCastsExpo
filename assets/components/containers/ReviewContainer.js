@@ -7,23 +7,23 @@ import { useFocusEffect,
          useNavigationState } from '@react-navigation/native';
 
 function ReviewContainer({title, comment, rating, serviceId, navigation}) {
-  console.log("Review container rating", rating)
   return (
     <View style={styles.reviewContainer}>
       <View style={{flexDirection: "column"}}>
-        <Text style={{color: "white", marginTop: 5, fontWeight: 'bold', marginLeft: 3, textAlign: 'center'}}>
+        <Text style={{color: "white", marginTop: 5, fontWeight: 'bold', marginLeft: 3, textAlign: 'center', paddingBottom: 10}}>
           {title}
         </Text>
-        <AirbnbRating
-        showRating={false}
-        defaultRating={rating}
-        fractions={1}
-        ratingColor={'teal'}
-        isDisabled={true}
-        size={10}/>
-        <Text style={{color: "white", fontSize: 10, fontWeight: 'bold', marginLeft: 10, marginRight: 10, paddingTop: 5}}>
-        {comment}
+        <Text style={{color: "white", fontSize: 10, fontWeight: 'bold', marginLeft: 10, paddingBottom: 20, marginRight: 10, paddingTop: 5}}>
+          {comment}
         </Text>
+          <AirbnbRating
+            showRating={false}
+            defaultRating={rating}
+            fractions={1}
+            ratingColor={'teal'}
+            isDisabled={true}
+            size={10}
+          />
       </View>
     </View>
   );

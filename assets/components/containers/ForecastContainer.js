@@ -20,12 +20,12 @@ function ForecastContainer({image, text, temp, time, speed, direction, name, hou
         </Text>
       </View>
       <View style={{flex:2, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5, marginTop: 10}}>
-        <Text style={{color: "lightgrey", fontSize: 10, textAlign: 'center'}}>
+        <Text style={{color: "lightgrey", fontSize: 10, textAlign: 'center', fontWeight: 'bold'}}>
           {(hourly == false) ? (name + " " + text) : text}
         </Text>
       </View>
       <View style={{flex:.5, paddingLeft: 2.5, paddingTop: 5, paddingRight: 2.5}}>
-        <Text style={{color: "lightgrey", fontSize: 10}}>
+        <Text style={{color: "lightgrey", fontSize: 10, fontWeight: 'bold'}}>
           Winds {speed} {direction}
         </Text>
       </View>
