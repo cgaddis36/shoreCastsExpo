@@ -16,6 +16,7 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
           city
           state
           zip
+          averageRating
           description
           reviews {
               title

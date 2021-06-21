@@ -69,12 +69,14 @@ function Services() {
                 address={business["address"]}
                 city={business["city"]}
                 state={business["state"]}
+                zip={business["zip"]}
                 description={business["description"]}
                 phoneNumber={business["phoneNumber"]}
                 reviews={business["reviews"]}
                 navigation={navigation}
                 businessServices={business["businessServices"]}
                 services={business["services"]}
+                averageRating={business["averageRating"]}
                 />
             )
             }
