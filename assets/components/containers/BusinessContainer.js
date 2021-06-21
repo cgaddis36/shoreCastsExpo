@@ -5,7 +5,8 @@ import { useFocusEffect,
          useNavigation,
          useRoute,
          useNavigationState } from '@react-navigation/native';
-function BusinessContainer({id, name, address, city, state, zip, description, phoneNumber, reviews, navigation, businessServices, services}) {
+function BusinessContainer({id, name, address, city, state, zip, description, phoneNumber, reviews, navigation, businessServices, services, averageRating}) {
+  const parsed = parseInt(averageRating)
   return (
     <View style={styles.businessContainer}>
       <View style={{flexDirection: "column"}}>
@@ -41,13 +42,15 @@ function BusinessContainer({id, name, address, city, state, zip, description, ph
             }) }
           style={styles.buttonContainer}>
             <Text style={styles.buttonText}> Reviews: {reviews.length} </Text>
-            <AirbnbRating
-                    showRating={false}
-                    rating={3}
-                    fractions={1}
-                    ratingColor={'teal'}
-                    isDisabled={true}
-                    size={10}/>
+
+                    <AirbnbRating
+                            showRating={false}
+                            defaultRating={parsed}
+                            fractions={1}
+                            ratingColor={'teal'}
+                            isDisabled={true}
+                            size={10}/>
+                        
           </TouchableOpacity>
       </View>
     </View>

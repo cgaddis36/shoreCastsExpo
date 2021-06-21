@@ -76,6 +76,7 @@ function Services() {
                 navigation={navigation}
                 businessServices={business["businessServices"]}
                 services={business["services"]}
+                averageRating={business["averageRating"]}
                 />
             )
             }
