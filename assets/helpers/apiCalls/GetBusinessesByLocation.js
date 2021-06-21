@@ -1,6 +1,6 @@
-
+import { ROOT_URL } from "@env"
 export default function getBusinessesByLocation({ route, navigation, setBusinessData }) {
-  return fetch("http://www.shorecasts.com/graphql", {
+  return fetch(`${ROOT_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

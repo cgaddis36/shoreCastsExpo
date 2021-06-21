@@ -1,5 +1,7 @@
+import { ROOT_URL } from "@env"
+
 export default function CreateReview({ title, comment, rating, businessServiceId, navigation }) {
-  return fetch("http://www.shorecasts.com/graphql", {
+  return fetch(`${ROOT_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

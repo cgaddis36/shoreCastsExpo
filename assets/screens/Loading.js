@@ -1,17 +1,16 @@
 import React from 'react';
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
-
+import { ROOT_URL } from "@env"
 import { ImageBackground, StyleSheet, View, Image, Text, Button } from 'react-native';
 
 function Loading() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-  const rootURL = "http://www.shorecasts.com/graphql";
 
   useFocusEffect(
     React.useCallback(() => {
-      fetch(`${rootURL}`, {
+      fetch(`${ROOT_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
