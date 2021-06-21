@@ -74,6 +74,7 @@ function Services() {
                 reviews={business["reviews"]}
                 navigation={navigation}
                 businessServices={business["businessServices"]}
+                services={business["services"]}
                 />
             )
             }
