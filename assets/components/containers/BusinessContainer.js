@@ -42,15 +42,13 @@ function BusinessContainer({id, name, address, city, state, zip, description, ph
             }) }
           style={styles.buttonContainer}>
             <Text style={styles.buttonText}> Reviews: {reviews.length} </Text>
-
-                    <AirbnbRating
-                            showRating={false}
-                            defaultRating={parsed}
-                            fractions={1}
-                            ratingColor={'teal'}
-                            isDisabled={true}
-                            size={10}/>
-                        
+              <AirbnbRating
+                      showRating={false}
+                      defaultRating={parsed}
+                      fractions={1}
+                      ratingColor={'teal'}
+                      isDisabled={true}
+                      size={10}/>
           </TouchableOpacity>
       </View>
     </View>
