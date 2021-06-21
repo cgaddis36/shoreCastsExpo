@@ -15,12 +15,17 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
           phoneNumber
           city
           state
+          zip
           description
           reviews {
               title
               comment
               rating
               userId
+          }
+          services {
+            id
+            name
           }
           businessServices {
             id
