@@ -9,7 +9,6 @@ function Services() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
-  const rootURL = "http://www.shorecasts.com/graphql";
   const [businessData, setBusinessData] = useState([])
 
   useFocusEffect(
