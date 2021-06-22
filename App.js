@@ -1,7 +1,4 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
  * @format
  * @flow strict-local
  */
@@ -23,7 +20,6 @@ import BusinessReviews from './assets/screens/BusinessReviews.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-// const topTab = createTopTabNavigator();
 
 export default function App() {
   createHomeStack = () => {

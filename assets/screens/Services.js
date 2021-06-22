@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import { ImageBackground, ScrollView, StyleSheet, View, Image, Text, Button, Alert, TouchableOpacity } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View, Image, Text, Button, Alert, TouchableOpacity, Modal } from 'react-native';
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
 import getBusinessesByLocation from '../helpers/apiCalls/GetBusinessesByLocation.js';
 import BusinessContainer from '../components/containers/BusinessContainer.js';
-
+import BusinessModal from '../components/modals/BusinessModal.js'
 
 function Services() {
   const route = useRoute();
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
   const [businessData, setBusinessData] = useState([])
+  const [businessModalToggle, setBusinessModalToggle] = useState(false)
 
   useFocusEffect(
     React.useCallback(() => {
@@ -18,6 +19,11 @@ function Services() {
     return (
         <View
           style={[styles.background, {alignItems: 'top', justifyContent: 'top'}]}>
+          <Modal visible={businessModalToggle}>
+            <BusinessModal
+              setBusinessModalToggle={setBusinessModalToggle}
+              />
+          </Modal>
           <View style={{marginTop: 10, flexDirection: 'row'}}>
           {businessData == "" ?
         <View style={[styles.buttonContainer, {marginLeft: 150, marginTop: 50}]}>
@@ -104,6 +110,15 @@ function Services() {
                 )}
               style={styles.buttonContainer}>
               <Text style={styles.buttonText}>Zipcode</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>{
+                setBusinessModalToggle(true)
+              }
+
+               }
+              style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Add Shop</Text>
             </TouchableOpacity>
             {route.params.error == null ? null :
               <View style={styles.errorContainer}>
