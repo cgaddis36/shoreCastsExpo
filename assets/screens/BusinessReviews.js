@@ -50,6 +50,7 @@ function BusinessReviews({route, navigation}) {
                 comment={review["comment"]}
                 rating={review["rating"]}
                 serviceId={review["serviceId"]}
+                createdAt={review["createdAt"]}
               />
           )
         }
