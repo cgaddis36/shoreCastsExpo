@@ -6,10 +6,13 @@ import { useFocusEffect,
          useRoute,
          useNavigationState } from '@react-navigation/native';
 
-function ReviewContainer({title, comment, rating, serviceId, navigation}) {
+function ReviewContainer({title, comment, rating, serviceId, createdAt, navigation}) {
   return (
     <View style={styles.reviewContainer}>
       <View style={{flexDirection: "column"}}>
+        <Text style={{color: "white", marginTop: 5, fontWeight: 'bold', marginLeft: 3, textAlign: 'center', paddingBottom: 10}}>
+          {createdAt.substr(0, 10).replace('Z', '').replace('T', '')}
+        </Text>
         <Text style={{color: "white", marginTop: 5, fontWeight: 'bold', marginLeft: 3, textAlign: 'center', paddingBottom: 10}}>
           {title}
         </Text>

@@ -23,6 +23,7 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
               comment
               rating
               userId
+              createdAt
           }
           services {
             id
@@ -48,7 +49,7 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
           })
           .catch((error) => {
             console.log("error", error)
-              route.params.error = "No stores for this category currently in our database, try submitting one below.",
+              route.params.error = "No stores for this category currently in our database, try submitting one above.",
               route.params.loading = false
               navigation.navigate("Services")
           })

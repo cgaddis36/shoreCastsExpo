@@ -11,15 +11,14 @@ function Home({navigation, route}) {
   }
 
   return (
-    <View
-      style={styles.background}>
+    <View style={styles.background}>
       <Image source={require('../images/default.png')}
         style={styles.logo}
         />
         {route.params.error == null ?
           null :
           <View>
-            <Text style={{fontSize: 20, textAlign: 'center', color: 'white', paddingBottom: 25}}>
+            <Text style={styles.errorText}>
               {route.params.error}
             </Text>
           </View>
@@ -113,6 +112,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 50
   },
+  errorText:{
+    fontSize: 20, 
+    textAlign: 'center',
+    color: 'white',
+    paddingBottom: 25
+  }
 })
 
 export default Home;
