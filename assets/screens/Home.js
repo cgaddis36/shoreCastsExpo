@@ -62,7 +62,7 @@ function Home({navigation, route}) {
               />
         </View>}
       <Image
-        style={styles.images}
+        style={styles.homeImage}
         source={require("../images/oceanWater.jpg")}
         />
         <Button0
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     height:250,
     width: 250
   },
-  images:{
+  homeImage:{
     height: 350,
     width: 350,
     borderRadius: 20,
