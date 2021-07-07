@@ -44,10 +44,8 @@ export default function App() {
       <Stack.Screen
          name="Forecast"
          component={Forecast}
-         initialParams={{
-
-           }}
-         options={{ title: 'Forecast'}}
+         options={{ title: 'Forecast',
+                    headerLeft: null }}
          initialParams={{
            beginDate: new Date().toISOString().slice(0, 10),
            endDate: (parseInt(new Date().toISOString().slice(0, 10) + 1))
