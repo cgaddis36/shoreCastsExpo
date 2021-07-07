@@ -163,7 +163,7 @@ function LoginModal({setModalToggle}) {
              { login ? null :
 
                <View>
-                 <Text style={[styles.footerText, {marginTop: 35}]}>
+                 <Text style={[styles.footerText, {marginTop: "10%"}]}>
                    Password Confirmation
                  </Text>
                  <View style={styles.footerAction}>
@@ -206,7 +206,7 @@ function LoginModal({setModalToggle}) {
                    }
                </View>
              }
-        <View style={{marginTop:30}}>
+        <View style={{marginTop:"10%"}}>
         </View>
         <View style={styles.loginButtonContainer}>
           <View style={styles.Button}>
