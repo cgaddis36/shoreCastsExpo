@@ -81,21 +81,21 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(30, 94, 238)"
   },
   logo:{
-    height:250,
-    width: 250
+    height: "30%",
+    width: "70%"
   },
   homeImage:{
-    height: 350,
-    width: 350,
+    height: "50%",
+    width: "85%",
     borderRadius: 20,
     borderWidth: 1,
-    marginBottom: 50
+    marginBottom: "10%"
   },
   errorText:{
     fontSize: 20,
     textAlign: 'center',
     color: 'white',
-    paddingBottom: 25
+    paddingBottom: "5%"
   }
 })
 
