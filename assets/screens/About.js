@@ -38,24 +38,23 @@ const styles = StyleSheet.create({
   },
   aboutContainer:{
     position: 'absolute',
-    top: 60,
+    top: "10%",
     alignItems: 'center',
-    height: 400,
-    width: 350,
+    height: "60%",
+    width: "90%",
     backgroundColor: 'rgba(165, 168, 176, 0.64)',
     borderRadius: 20
     },
   mainText:{
     color: 'white',
-    paddingTop: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingTop: "5%",
+    paddingHorizontal: "4%",
     fontSize: 15,
     fontWeight: 'bold'
   },
   logo:{
-    height:250,
-    width: 250,
+    height:"30%",
+    width: "70%",
   },
 
 });
