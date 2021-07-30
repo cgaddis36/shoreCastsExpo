@@ -69,7 +69,6 @@ function Forecast() {
 
           </ScrollView>
         </View>
-
         <Text style={{marginTop: 5, color: 'white'}}>
          7-Day Weather Summary
         </Text>

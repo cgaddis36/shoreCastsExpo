@@ -11,7 +11,6 @@ function Button0({title, presser}) {
       onPress={() => presser()
         }
       />
-
     </View>
   );
 }
