@@ -88,8 +88,8 @@ function Loading() {
         }))
   return (
       <View style={styles.background}>
-        <View style={styles.logoContainer}>
-          <Text style={styles.logoText}>Loading...</Text>
+        <View style={styles.loadingTextContainer}>
+          <Text style={styles.loadingText}>Loading...</Text>
         </View>
       </View>
       );
@@ -102,24 +102,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "rgb(30, 94, 238)"
   },
-  logoContainer:{
+  loadingTextContainer:{
     position: 'absolute',
-    top: 70,
+    top: "50%",
     alignItems: 'center'
     },
-  logoText:{
-    color: 'white'
+  loadingText:{
+    color: 'white',
+    fontSize: 20
   },
-  button1:{
-    width: "100%",
-    height: 70,
-    backgroundColor: "rgb(31, 112, 219)"
-  },
-  button2:{
-    width: "100%",
-    height: 70,
-    backgroundColor: "rgb(31, 219, 78)"
-  }
+
 
 });
 
