@@ -57,11 +57,11 @@ function BusinessContainer({id, name, address, city, state, zip, description, ph
 
 const styles = StyleSheet.create({
   businessContainer: {
-    height:196,
-    width:196,
-    paddingBottom: 5,
+    height:'23%',
+    width: '100%',
+    paddingBottom: '1%',
     borderColor: 'rgba(51, 52, 56, 0.64)',
-    marginBottom: 10,
+    marginBottom: '5%',
     borderRadius:20,
     borderWidth: 1,
     alignItems: "center",
