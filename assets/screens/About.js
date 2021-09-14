@@ -8,10 +8,10 @@ function About({route, navigation}) {
   return (
     <View
         style={styles.background}>
+      <View style={styles.aboutContainer}>
         <Image source={require('../images/default.png')}
           style={styles.logo}
           />
-      <View style={styles.aboutContainer}>
         <Text style={styles.mainText}>
           Shorecast weather application was designed to help recreational boaters, fisherman and
           other outdoor enthusiasts plan their days on the water in one place. Centralizing the NOAA tides chart, National Weather Service weather forecast
@@ -19,7 +19,7 @@ function About({route, navigation}) {
           will include a map of the weather radar as well as wind radar and a profile page for logged in users to modify their information reviews they have left for shops.
 
         </Text>
-        <Text style={[styles.mainText, {marginTop: 10}]}>
+        <Text style={[styles.mainText, {marginTop: '1%'}]}>
           If you are having any performance issues, experience any bugs or have any other questions or feedback you can reach out to me at
           cgaddis36@gmail.com
         </Text>
@@ -38,16 +38,15 @@ const styles = StyleSheet.create({
   },
   aboutContainer:{
     position: 'absolute',
-    top: "10%",
+    top: "1%",
     alignItems: 'center',
-    height: "60%",
+    height: "90%",
     width: "90%",
     backgroundColor: 'rgba(165, 168, 176, 0.64)',
     borderRadius: 20
     },
   mainText:{
     color: 'white',
-    paddingTop: "5%",
     paddingHorizontal: "4%",
     fontSize: 15,
     fontWeight: 'bold'
