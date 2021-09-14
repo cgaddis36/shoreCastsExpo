@@ -50,11 +50,7 @@ function BusinessModal({setBusinessModalToggle}) {
   return (
     <View style={styles.modalContainer}>
       <View style={styles.header}>
-        <View style={styles.logoContainer}>
-          <Image source={require('../../images/default.png')}
-            style={styles.logo}
-            />
-        </View>
+
         <Text style={[styles.headerText, {fontSize:30}]}>
         New Bait Shop, Fly Shop or Guided Service
         </Text>
@@ -94,7 +90,7 @@ function BusinessModal({setBusinessModalToggle}) {
             onChangeText={(text) => nameInputChange(text)}
             style={styles.footerTextInput}/>
           </View>
-          <Text style={[styles.footerText, {marginTop: 35}]}>
+          <Text style={[styles.footerText, {marginTop: '5%'}]}>
             Description
           </Text>
           <View style={styles.footerAction}>
@@ -106,7 +102,7 @@ function BusinessModal({setBusinessModalToggle}) {
              onChangeText={(text) => descriptionInputChange(text)}
              />
            </View>
-           <Text style={[styles.footerText, {marginTop: 35}]}>
+           <Text style={[styles.footerText, {marginTop: '5%'}]}>
              Address
            </Text>
            <View style={styles.footerAction}>
@@ -118,7 +114,7 @@ function BusinessModal({setBusinessModalToggle}) {
               onChangeText={(text) => addressInputChange(text)}
               />
             </View>
-            <Text style={[styles.footerText, {marginTop: 35}]}>
+            <Text style={[styles.footerText, {marginTop: '5%'}]}>
               City
             </Text>
             <View style={styles.footerAction}>
@@ -130,7 +126,7 @@ function BusinessModal({setBusinessModalToggle}) {
                onChangeText={(text) => cityInputChange(text)}
                />
              </View>
-             <Text style={[styles.footerText, {marginTop: 35}]}>
+             <Text style={[styles.footerText, {marginTop: '5%'}]}>
                State
              </Text>
              <View style={styles.footerAction}>
@@ -142,7 +138,7 @@ function BusinessModal({setBusinessModalToggle}) {
                 onChangeText={(text) => stateInputChange(text)}
                 />
               </View>
-              <Text style={[styles.footerText, {marginTop: 35}]}>
+              <Text style={[styles.footerText, {marginTop: '5%'}]}>
                 Zipcode
               </Text>
               <View style={styles.footerAction}>
@@ -178,7 +174,7 @@ const styles = StyleSheet.create({
   },
   footerAction: {
        flexDirection: 'row',
-       marginTop: 10,
+       marginTop: "1%",
        borderBottomWidth: 1,
        borderBottomColor: '#f2f2f2',
        paddingBottom: 5
@@ -211,7 +207,7 @@ header: {
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 50
+    paddingBottom: '5%'
 },
 logo:{
   height:250,
@@ -234,7 +230,7 @@ footer: {
 footerTextInput:{
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
-    paddingLeft: 10,
+    paddingLeft: '1%',
     color: 'black',
 },
 errorMsg: {
