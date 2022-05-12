@@ -49,8 +49,10 @@ function Forecast() {
           Hourly Weather Forecast
         </Text>
         <View style={{ height: "40%", marginTop: "1%"}}>
-          <ScrollView horizontal={true}
-                      showsHorizontalScrollIndicator={false}>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            >
             {route.params.forecastHourlyData.map((component, index) =>
               <ForecastContainer
                 key={index}
