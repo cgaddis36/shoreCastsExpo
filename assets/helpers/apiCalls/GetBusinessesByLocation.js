@@ -1,6 +1,6 @@
-import { ROOT_URL } from "@env"
+import { REACT_APP_ROOT_URL } from "@env"
 export default function getBusinessesByLocation({ route, navigation, setBusinessData }) {
-  return fetch(`${ROOT_URL}`, {
+  return fetch(`${REACT_APP_ROOT_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
