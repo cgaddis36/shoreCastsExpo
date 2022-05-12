@@ -57,7 +57,6 @@ function BusinessContainer({id, name, address, city, state, zip, description, ph
 
 const styles = StyleSheet.create({
   businessContainer: {
-    height:'23%',
     width: '100%',
     paddingBottom: '1%',
     borderColor: 'rgba(51, 52, 56, 0.64)',
