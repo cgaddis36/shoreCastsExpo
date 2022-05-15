@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFocusEffect, useNavigation, useRoute, useNavigationState } from '@react-navigation/native'
-import { ROOT_URL } from "@env"
+import { REACT_APP_ROOT_URL } from "@env"
 import { ImageBackground, StyleSheet, View, Image, Text, Button } from 'react-native';
 
 function Loading() {
@@ -8,9 +8,10 @@ function Loading() {
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
 
+  console.log("REACT APP ROOT URL", `${REACT_APP_ROOT_URL}`)
   useFocusEffect(
     React.useCallback(() => {
-      fetch(`${ROOT_URL}`, {
+      fetch(`${REACT_APP_ROOT_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,6 +29,7 @@ function Loading() {
         })
         .then(response => {
           response.json().then((data) => {
+            console.log("data", data)
             fetch(`https://api.weather.gov/points/${data.data.closestStation.lat},${data.data.closestStation.lon}`)
               .then(response => {
                 response.json().then((foreData) => {
@@ -88,8 +90,8 @@ function Loading() {
         }))
   return (
       <View style={styles.background}>
-        <View style={styles.logoContainer}>
-          <Text style={styles.logoText}>Loading...</Text>
+        <View style={styles.loadingTextContainer}>
+          <Text style={styles.loadingText}>Loading...</Text>
         </View>
       </View>
       );
@@ -102,24 +104,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "rgb(30, 94, 238)"
   },
-  logoContainer:{
+  loadingTextContainer:{
     position: 'absolute',
-    top: 70,
+    top: "50%",
     alignItems: 'center'
     },
-  logoText:{
-    color: 'white'
+  loadingText:{
+    color: 'white',
+    fontSize: 20
   },
-  button1:{
-    width: "100%",
-    height: 70,
-    backgroundColor: "rgb(31, 112, 219)"
-  },
-  button2:{
-    width: "100%",
-    height: 70,
-    backgroundColor: "rgb(31, 219, 78)"
-  }
+
 
 });
 

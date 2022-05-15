@@ -1,7 +1,7 @@
-import { ROOT_URL } from "@env"
+import { REACT_APP_ROOT_URL } from "@env"
 
 export default function CreateUser({ email, password, route, navigation }) {
-  return fetch(`${ROOT_URL}`, {
+  return fetch(`${REACT_APP_ROOT_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

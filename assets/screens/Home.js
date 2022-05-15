@@ -9,7 +9,7 @@ function Home({navigation, route}) {
   const alert = () => {
     Alert.prompt(
       "Enter Zipcode",
-      "Retrieve next 72 hour hourly weather forecast. NOAA tides predictions for next 48 Hours",
+      "Retrieve 72 hour hourly weather forecast & NOAA tides predictions for next 48 Hours",
       [
         {
           text: 'Cancel',
@@ -46,21 +46,6 @@ function Home({navigation, route}) {
             </Text>
           </View>
           }
-      <Modal visible={modalToggle}>
-        <LoginModal
-          setModalToggle={setModalToggle}
-          />
-      </Modal>
-      {(route.params.user > 0) ?
-        <View style={{backgroundColor: "rgb(30, 94, 238)", borderColor: "rgb(30, 94, 238)", height: 40, marginBottom: 50}}>
-        </View>
-        :
-        <View style={{flexDirection: 'row'}}>
-            <Button0
-              title={"Login"}
-              presser={handlePress}
-              />
-        </View>}
       <Image
         style={styles.homeImage}
         source={require("../images/oceanWater.jpg")}
@@ -81,21 +66,21 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(30, 94, 238)"
   },
   logo:{
-    height:250,
-    width: 250
+    height: "30%",
+    width: "70%"
   },
   homeImage:{
-    height: 350,
-    width: 350,
+    height: "50%",
+    width: "85%",
     borderRadius: 20,
     borderWidth: 1,
-    marginBottom: 50
+    marginBottom: "10%"
   },
   errorText:{
     fontSize: 20,
     textAlign: 'center',
     color: 'white',
-    paddingBottom: 25
+    paddingBottom: "5%"
   }
 })
 

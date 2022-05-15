@@ -1,6 +1,6 @@
-import { ROOT_URL } from "@env"
+import { REACT_APP_ROOT_URL } from "@env"
 export default function getBusinessesByLocation({ route, navigation, setBusinessData }) {
-  return fetch(`${ROOT_URL}`, {
+  return fetch(`${REACT_APP_ROOT_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,8 +40,8 @@ export default function getBusinessesByLocation({ route, navigation, setBusiness
     .then(response => {
       response.json().then((data) => {
         if(route.params.loading == true) {
-            setBusinessData(data["data"]["getBusinessesByLocation"])
-            console.log(data)
+          var businesses = data["data"]["getBusinessesByLocation"]
+            setBusinessData(businesses)
               route.params.error = null
               route.params.loading = false
               navigation.navigate("Services")

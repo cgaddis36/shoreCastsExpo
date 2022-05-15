@@ -163,7 +163,7 @@ function LoginModal({setModalToggle}) {
              { login ? null :
 
                <View>
-                 <Text style={[styles.footerText, {marginTop: 35}]}>
+                 <Text style={[styles.footerText, {marginTop: "10%"}]}>
                    Password Confirmation
                  </Text>
                  <View style={styles.footerAction}>
@@ -206,7 +206,7 @@ function LoginModal({setModalToggle}) {
                    }
                </View>
              }
-        <View style={{marginTop:30}}>
+        <View style={{marginTop:"10%"}}>
         </View>
         <View style={styles.loginButtonContainer}>
           <View style={styles.Button}>
@@ -264,7 +264,7 @@ function LoginModal({setModalToggle}) {
 
 const styles = StyleSheet.create({
   modalContainer:{
-    height: 700,
+    height: "100%",
     flex: 1,
     backgroundColor: "rgb(30, 94, 238)"
   },
@@ -274,17 +274,17 @@ const styles = StyleSheet.create({
   },
   footerAction: {
        flexDirection: 'row',
-       marginTop: 10,
+       marginTop: "2.5%",
        borderBottomWidth: 1,
        borderBottomColor: '#f2f2f2',
-       paddingBottom: 5
+       paddingBottom: "1.25%"
    },
    footerActionError: {
        flexDirection: 'row',
-       marginTop: 10,
+       marginTop: "2.5%",
        borderBottomWidth: 1,
        borderBottomColor: '#FF0000',
-       paddingBottom: 5
+       paddingBottom: "1.25%"
    },
   headerText: {
     color: '#fff',
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     justifyContent: 'center',
     textAlign: 'center',
-    marginBottom: 5
+    marginBottom: "1.25%"
   },
   headerSubtext: {
     color: '#fff',
@@ -305,17 +305,17 @@ const styles = StyleSheet.create({
 header: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 50
+    paddingHorizontal: "5%",
+    paddingBottom: "10%"
 },
 logo:{
-  height:250,
-  width: 250,
+  height:"100%",
+  width: "80%",
 },
 logoContainer:{
   justifyContent: 'center',
-  marginTop: 250,
-  paddingLeft: 50,
+  marginTop: "40%",
+  paddingLeft: "15%",
 
 },
 footer: {
@@ -323,13 +323,13 @@ footer: {
     backgroundColor: 'lightgrey',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30
+    paddingHorizontal: "5%",
+    paddingVertical: "8%"
 },
 footerTextInput:{
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
-    paddingLeft: 10,
+    paddingLeft: "2.5%",
     color: 'black',
 },
 errorMsg: {
@@ -338,11 +338,11 @@ errorMsg: {
    },
   Button:{
     width: "40%",
-    height: 40,
-    borderRadius:20,
+    height: "15%",
+    borderRadius: 20,
     borderWidth: 1,
     backgroundColor: "rgba(51, 52, 56, 0.64)",
-    marginBottom: 20,
+    marginBottom: "5%",
   },
   loginButtonContainer:{
     alignItems: 'center'

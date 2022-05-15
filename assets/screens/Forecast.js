@@ -45,12 +45,14 @@ function Forecast() {
       scrollEventThrottle={16}
       >
       <View style={styles.scrollTextContainer}>
-        <Text style={{marginTop: 5, color: 'white'}}>
+        <Text style={{marginTop: "1%", color: 'white'}}>
           Hourly Weather Forecast
         </Text>
-        <View style={{ height: 130, marginTop: 5}}>
-          <ScrollView horizontal={true}
-                      showsHorizontalScrollIndicator={false}>
+        <View style={{ height: "40%", marginTop: "1%"}}>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            >
             {route.params.forecastHourlyData.map((component, index) =>
               <ForecastContainer
                 key={index}
@@ -69,11 +71,10 @@ function Forecast() {
 
           </ScrollView>
         </View>
-
         <Text style={{marginTop: 5, color: 'white'}}>
          7-Day Weather Summary
         </Text>
-        <View style={{ height: 150, marginTop: 5, marginBottom: 10}}>
+        <View style={{ height: "50%", marginTop: "1%", marginBottom: "2%"}}>
           <ScrollView horizontal={true}
                       showsHorizontalScrollIndicator={false}>
             {route.params.forecastSummaryData.map((component, index) =>
@@ -171,40 +172,28 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(30, 94, 238)"
   },
   navContainer: {
-    marginTop: 5,
+    marginTop: "1%",
     borderRadius:5,
     borderWidth: 1,
     backgroundColor: 'rgba(51, 52, 56, 0.64)',
-    paddingHorizontal: 5
+    paddingHorizontal: "1%"
   },
   scrollTextContainer: {
-    marginTop: 2,
-    marginHorizontal: 5,
+    marginTop: ".5%",
+    marginHorizontal: "1%",
     backgroundColor: 'white',
     borderRadius:16,
     borderWidth: 1,
     backgroundColor: 'rgba(51, 52, 56, 0.64)',
-    paddingHorizontal: 5,
+    paddingHorizontal: "1%",
     flex: 1,
     alignItems: 'center'
   },
   charts: {
-    marginTop: 150,
     position: 'absolute',
     flexDirection: "column",
-    marginBottom: 200,
     justifyContent: 'space-around',
   },
-  forecastContainer:{
-    position: 'absolute',
-    top: 55,
-    alignItems: 'center',
-    width: 200,
-    height: 38,
-    backgroundColor: "rgba(165, 168, 176, 0.64)",
-    borderRadius: 10,
-    borderWidth: 1,
-    },
     bannerText:{
       fontSize: 15,
       color: 'white',

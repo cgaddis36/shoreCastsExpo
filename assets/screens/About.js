@@ -8,20 +8,21 @@ function About({route, navigation}) {
   return (
     <View
         style={styles.background}>
+      <View style={styles.aboutContainer}>
         <Image source={require('../images/default.png')}
           style={styles.logo}
           />
-      <View style={styles.aboutContainer}>
         <Text style={styles.mainText}>
-          Shorecast weather application was designed to help recreational boaters, fisherman and
-          other outdoor enthusiasts plan their days on the water in one place. Centralizing the NOAA tides chart, National Weather Service weather forecast
-          and providing a place to rate your local tackle shops, fly shops and guides were my 3 main goals while building out the MVP of this product. Future iterations
-          will include a map of the weather radar as well as wind radar and a profile page for logged in users to modify their information reviews they have left for shops.
+          Shorecasts weather application is designed to help recreational boaters, fisherman and
+          other outdoor enthusiasts plan their days on the water. Centralizing the NOAA tidal predictions chart,
+          weather forecasts from the National Weather Service & displaying the water temperatures for the area were my three main goals for this application.
 
+
+          Be on the lookout for more to come in future updates!
         </Text>
-        <Text style={[styles.mainText, {marginTop: 10}]}>
-          If you are having any performance issues, experience any bugs or have any other questions or feedback you can reach out to me at
-          cgaddis36@gmail.com
+        <Text style={[styles.mainText, {marginTop: '1%'}]}>
+          If you are having any performance issues, experience any bugs or have any other questions or feedback, please send them to
+          shorecasts@gmail.com
         </Text>
       </View>
     </View>
@@ -38,24 +39,22 @@ const styles = StyleSheet.create({
   },
   aboutContainer:{
     position: 'absolute',
-    top: 60,
+    top: "1%",
     alignItems: 'center',
-    height: 400,
-    width: 350,
+    height: "90%",
+    width: "90%",
     backgroundColor: 'rgba(165, 168, 176, 0.64)',
     borderRadius: 20
     },
   mainText:{
     color: 'white',
-    paddingTop: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingHorizontal: "4%",
     fontSize: 15,
     fontWeight: 'bold'
   },
   logo:{
-    height:250,
-    width: 250,
+    height:"30%",
+    width: "70%",
   },
 
 });

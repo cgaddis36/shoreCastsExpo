@@ -44,10 +44,8 @@ export default function App() {
       <Stack.Screen
          name="Forecast"
          component={Forecast}
-         initialParams={{
-
-           }}
-         options={{ title: 'Forecast'}}
+         options={{ title: 'Forecast',
+                    headerLeft: null }}
          initialParams={{
            beginDate: new Date().toISOString().slice(0, 10),
            endDate: (parseInt(new Date().toISOString().slice(0, 10) + 1))
@@ -134,16 +132,7 @@ export default function App() {
             <MaterialCommunityIcons name="weather-partly-lightning" size={size} color={color}/>
             )
         }}  />
-      <Tab.Screen
-        name="Services"
-        component={createServicesStack}
-        options={{
-          tabBarLabel: 'Services',
-          tabBarIcon: ({color, size}) => (
-            <FontAwesome5 name="fish" size={size} color={color}/>
-            )
-        }} />
-
+  
       <Tab.Screen
         name="About"
         component={createAboutStack}
