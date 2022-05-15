@@ -13,15 +13,16 @@ function About({route, navigation}) {
           style={styles.logo}
           />
         <Text style={styles.mainText}>
-          Shorecast weather application was designed to help recreational boaters, fisherman and
-          other outdoor enthusiasts plan their days on the water in one place. Centralizing the NOAA tides chart, National Weather Service weather forecast
-          and providing a place to rate your local tackle shops, fly shops and guides were my 3 main goals while building out the MVP of this product. Future iterations
-          will include a map of the weather radar as well as wind radar and a profile page for logged in users to modify their information reviews they have left for shops.
+          Shorecasts weather application is designed to help recreational boaters, fisherman and
+          other outdoor enthusiasts plan their days on the water. Centralizing the NOAA tidal predictions chart,
+          weather forecasts from the National Weather Service & displaying the water temperatures for the area were my three main goals for this application.
 
+
+          Be on the lookout for more to come in future updates!
         </Text>
         <Text style={[styles.mainText, {marginTop: '1%'}]}>
-          If you are having any performance issues, experience any bugs or have any other questions or feedback you can reach out to me at
-          cgaddis36@gmail.com
+          If you are having any performance issues, experience any bugs or have any other questions or feedback, please send them to
+          shorecasts@gmail.com
         </Text>
       </View>
     </View>
