@@ -26,68 +26,72 @@ function Services() {
           </Modal>
           <View style={{marginTop: 10, flexDirection: 'row'}}>
           {businessData == "" ?
-        <View style={[styles.buttonContainer, {marginHorizontal: "32%", marginTop: "50%"}]}>
-          <Text style={styles.buttonText}>SHOPS LOADING...</Text>
-        </View>:
-
-        <View style={{flexDirection: 'column', flex: 1, marginLeft: "2%"}}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Services", {
-                serviceId: "1",
-                loading: true,
-                error: null
-              }) }
-            style={styles.buttonContainer}>
-              <Text style={styles.buttonText}>Fly Shops</Text>
-            </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Services", {
-                serviceId: "2",
-                loading: true,
-                error: null
-              }) }
-            style={styles.buttonContainer}>
-              <Text style={styles.buttonText}>Bait Shops</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Services", {
-                  serviceId: "3",
-                  loading: true,
-                  error: null
-                }) }
-              style={styles.buttonContainer}>
-                <Text style={styles.buttonText}>Guides</Text>
-              </TouchableOpacity>
-        </View>
-      }
+            <View style={[styles.buttonContainer, {marginHorizontal: "32%", marginTop: "50%"}]}>
+              <Text style={styles.buttonText}>SHOPS LOADING...</Text>
+            </View>
+            :
+            <View style={{flexDirection: 'column', flex: 1, marginLeft: "2%"}}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Services", {
+                    serviceId: "1",
+                    loading: true,
+                    error: null
+                  }) }
+                style={styles.buttonContainer}>
+                  <Text style={styles.buttonText}>Fly Shops</Text>
+                </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Services", {
+                    serviceId: "2",
+                    loading: true,
+                    error: null
+                  }) }
+                style={styles.buttonContainer}>
+                  <Text style={styles.buttonText}>Bait Shops</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Services", {
+                      serviceId: "3",
+                      loading: true,
+                      error: null
+                    }) }
+                  style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>Guides</Text>
+                  </TouchableOpacity>
+            </View>
+          }
         <View style={{flex: 2, marginHorizontal: "1%"}}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {
-              businessData.map((business, index) =>
-              <BusinessContainer
-                key={index}
-                id={business["id"]}
-                name={business["name"]}
-                address={business["address"]}
-                city={business["city"]}
-                state={business["state"]}
-                zip={business["zip"]}
-                description={business["description"]}
-                phoneNumber={business["phoneNumber"]}
-                reviews={business["reviews"]}
-                navigation={navigation}
-                businessServices={business["businessServices"]}
-                services={business["services"]}
-                averageRating={business["averageRating"]}
-                />
-            )
-            }
+          <ScrollView showsVerticalScrollIndicator={false} scrollToOverflowEnabled={true}>
+            <View style={{height: "100%"}}>
+              {
+                businessData.map((business, index) =>
+                <BusinessContainer
+                  key={index}
+                  id={business["id"]}
+                  name={business["name"]}
+                  address={business["address"]}
+                  city={business["city"]}
+                  state={business["state"]}
+                  zip={business["zip"]}
+                  description={business["description"]}
+                  phoneNumber={business["phoneNumber"]}
+                  reviews={business["reviews"]}
+                  navigation={navigation}
+                  businessServices={business["businessServices"]}
+                  services={business["services"]}
+                  averageRating={business["averageRating"]}
+                  />
+                )
+              }
+            </View>
           </ScrollView>
         </View>
-        {businessData == "" ? null :
+        {businessData == "" ?
+          null
+          :
           <View style={{flexDirection: 'column', flex: 1, marginRight: "1%"}}>
             <TouchableOpacity
               onPress={() => Alert.prompt(
