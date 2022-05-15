@@ -9,7 +9,7 @@ function Home({navigation, route}) {
   const alert = () => {
     Alert.prompt(
       "Enter Zipcode",
-      "Retrieve next 72 hour hourly weather forecast. NOAA tides predictions for next 48 Hours",
+      "Retrieve 72 hour hourly weather forecast & NOAA tides predictions for next 48 Hours",
       [
         {
           text: 'Cancel',
