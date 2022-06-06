@@ -14,13 +14,12 @@ function About({route, navigation}) {
           />
         <Text style={styles.mainText}>
           Shorecasts weather application is designed to help recreational boaters, fisherman and
-          other outdoor enthusiasts plan their days on the water. Centralizing the NOAA tidal predictions chart,
-          weather forecasts from the National Weather Service & displaying the water temperatures for the area were my three main goals for this application.
-
+          other outdoor enthusiasts plan their days on the water by centralizing the NOAA tidal predictions chart,
+          weather forecasts from the National Weather Service & displaying the water temperatures for their area.
 
           Be on the lookout for more to come in future updates!
         </Text>
-        <Text style={[styles.mainText, {marginTop: '1%'}]}>
+        <Text style={[styles.mainText, {marginTop: '5%'}]}>
           If you are having any performance issues, experience any bugs or have any other questions or feedback, please send them to
           shorecasts@gmail.com
         </Text>
